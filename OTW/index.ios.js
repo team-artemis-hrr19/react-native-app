@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var SignUp = require('./App/Components/signUp.js')
+var SignUp = require('./app/components/signUp.js')
 import {
   AppRegistry,
   StyleSheet,
