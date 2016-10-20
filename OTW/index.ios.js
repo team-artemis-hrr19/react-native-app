@@ -1,20 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
+var SignUp = require('./app/components/signUp.js')
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  NavigatorIOS
 } from 'react-native';
 
 export default class OTW extends Component {
+  
   render() {
     return (
+<<<<<<< HEAD
       <View style={styles.container}>
         <Text style={styles.welcome}>
         Branch Test
@@ -27,6 +25,14 @@ export default class OTW extends Component {
           Cmd+D or shake for dev menu
         </Text>
       </View>
+=======
+      <NavigatorIOS
+        style={styles.container}
+        initialRoute={{
+          title: 'On The Way',
+          component: SignUp
+        }} />
+>>>>>>> cca4dfe68a7517fde3fbe5f8ff045a3f7c1bc949
     );
   }
 }
@@ -34,19 +40,6 @@ export default class OTW extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
 
