@@ -1,11 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-var SignUp = require('./App/Components/SignUp.js')
+var SignUp = require('./App/Components/signUp.js')
 import {
   AppRegistry,
   StyleSheet,
