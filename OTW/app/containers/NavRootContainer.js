@@ -20,7 +20,9 @@ function mapDispatchToProps (dispatch) {
 }
 
 // for some reason prop navigation is not available
-export default connect(
+const NavRootContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(NavRoot);
+
+export default NavRootContainer;

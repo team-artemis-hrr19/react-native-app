@@ -3,7 +3,8 @@ import {NavigationExperimental} from 'react-native';
 
 //components
 import Home from './Home';
-import signIn from './signIn';
+import SignIn from './signIn';
+import SignUp from './signUp';
 
 const {CardStack: NavigationCardStack} = NavigationExperimental;
 
@@ -25,11 +26,20 @@ class NavRoot extends Component {
   _renderScene(props) {
     const {route} = props.scene;
     if (route.key === 'home') {
-      return <Home
+      return (
+        <Home
         _handleNavigate = {this._handleNavigate}
-      />
-    // todo add other routes
+        />
+      );
     }
+    if (route.key === 'signIn') {
+      return (
+        <SignIn
+          _handleNavigate = {this._handleNavigate}
+        />
+      );
+    }
+    // TODO: add other routes
   }
 
   _handleBackAction () {
@@ -54,11 +64,9 @@ class NavRoot extends Component {
   }
 
   render() {
-    console.log('props', this.props);
     return (
       <NavigationCardStack
         direction='vertical'
-        //FIXME: this.props.navigation is undefined for some reason?
         navigationState={this.props.navigation}
         onNavigate={this._handleNavigate.bind(this)}
         renderScene={this._renderScene}
