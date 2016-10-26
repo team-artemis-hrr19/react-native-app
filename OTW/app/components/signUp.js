@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+var SignIn = require('./signIn.js')
 import {
   AppRegistry,
   StyleSheet,
@@ -12,21 +13,37 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = { 
+      name: 'Name',
       username: 'Username',
-      password: 'Password'
+      password: 'Password',
+      passConfirm: 'Password'
      };
   }
 
+  signIn(){
+    this.props.navigator.replace({
+      title: 'Sign In',
+      component: SignIn
+    })
+  }
 
   render() {
     return (
       <View style={styles.container}>
+        <Text> Name </Text>
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={(name) => this.setState({name})}
+          value={this.state.name}
+        />
+
         <Text> Username </Text>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           onChangeText={(username) => this.setState({username})}
           value={this.state.username}
         />
+
         <Text> Password </Text>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
@@ -35,11 +52,27 @@ class SignUp extends Component {
           value={this.state.password}
         />
 
+
+        <Text> Confirm Password </Text>
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          secureTextEntry={true}
+          onChangeText={(passConfirm) => this.setState({passConfirm})}
+          value={this.state.passConfirm}
+        />
+
         <TouchableHighlight 
-        onPress={this.login}
+        onPress={this.signup}
         style={styles.button}
         >
           <Text style={styles.buttonText}> Sign Up </Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight 
+        onPress={this.signIn}
+        style={styles.button}
+        >
+          <Text style={styles.buttonText}> Sign In </Text>
         </TouchableHighlight>
       </View>
     );

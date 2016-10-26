@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 var SignUp = require('./app/components/signUp.js')
+var Help = require('./app/components/help.js')
+
 import {
   AppRegistry,
   StyleSheet,
@@ -16,7 +18,7 @@ export default class OTW extends Component {
         style={styles.container}
         initialRoute={{
           title: 'On The Way',
-          component: SignUp
+          component: Help
         }} />
     );
   }
