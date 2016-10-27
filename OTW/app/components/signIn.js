@@ -21,6 +21,12 @@ class SignIn extends Component {
   componentDidMount() {
     this._setupGoogleSignin();
   }
+
+  goToMain(){
+    this.props.navigator.push({title:'main', username:this.state.user})
+    
+  } 
+
   render() {
     if (!this.state.user) {
       return (
@@ -45,6 +51,12 @@ class SignIn extends Component {
         <TouchableOpacity onPress={() => {this._signOut(); }}>
         <View style={{marginTop: 50}}>
             <Text> Log out </Text>
+          </View>
+        </TouchableOpacity>
+
+         <TouchableOpacity onPress={() => {this.goToMain(); }}>
+        <View style={{marginTop: 50}}>
+            <Text> Main page </Text>
           </View>
         </TouchableOpacity>
       </View>
