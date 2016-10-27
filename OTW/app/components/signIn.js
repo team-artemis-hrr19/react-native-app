@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -14,10 +13,8 @@ import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: 'Username',
-      password: 'Password'
-     };
+    console.log('props', props);
+    this._signOut;
   }
 
   componentDidMount() {
@@ -25,11 +22,11 @@ class SignIn extends Component {
   }
 
   goToMain(){
-    this.props.navigator.push({title:'main', username:this.state.user})
+    this.props.handleNavigation();
   }
 
   render() {
-    if (!this.state.user) {
+    if (!this.props.user) {
       return (
         <View style={styles.container}>
         <GoogleSigninButton
@@ -41,7 +38,7 @@ class SignIn extends Component {
       );
     }
 
-    if (this.state.user) {
+    if (this.props.user) {
       return (
         <View style={styles.container}>
         <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>
@@ -80,8 +77,6 @@ class SignIn extends Component {
       });
 
       const user = await GoogleSignin.currentUserAsync();
-      console.log(user);
-      this.setState({user});
     }
     catch(err) {
       console.log('Signin Error', err.code, err.message);
@@ -91,9 +86,9 @@ class SignIn extends Component {
   _signIn() {
     GoogleSignin.signIn()
     .then((user) => {
-      console.log(user);
-      this.setState({user: user});
-      // TODO, add navigate away element here
+      console.log('user in signin', user);
+      this.props.updateUser(user);
+      this.props._handleNavigate({type: 'back'});
     })
     .catch((err) => {
       console.log('Wrong info', err);
@@ -103,6 +98,7 @@ class SignIn extends Component {
 
   _signOut() {
     GoogleSignin.revokeAccess().then(() => GoogleSignin.signOut()).then(() => {
+      // change to update store
       this.setState({user: null});
     })
     .done();
