@@ -48,33 +48,24 @@ class SignIn extends Component {
         </Text>
         <Text> Your email is: {this.state.user.email}</Text>
 
-<<<<<<< HEAD
         <TouchableHighlight
         onPress={this.login}
         style={styles.button}
         >
           <Text style={styles.buttonText}> Sign In </Text>
         </TouchableHighlight>
-||||||| merged common ancestors
-        <TouchableHighlight
-        onPress={this.login}
-        style={styles.button}
-        >
-          <Text style={styles.buttonText}> Sign In </Text>
-        </TouchableHighlight>
-=======
+
         <TouchableOpacity onPress={() => {this._signOut(); }}>
-        <View style={{marginTop: 50}}>
+          <View style={{marginTop: 50}}>
             <Text> Log out </Text>
           </View>
         </TouchableOpacity>
 
          <TouchableOpacity onPress={() => {this.goToMain(); }}>
-        <View style={{marginTop: 50}}>
+          <View style={{marginTop: 50}}>
             <Text> Main page </Text>
           </View>
         </TouchableOpacity>
->>>>>>> origin/googlesignin
       </View>
       );
     }
@@ -129,12 +120,5 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
-<<<<<<< HEAD
 
 export default SignIn;
-||||||| merged common ancestors
-
-module.exports = SignIn;
-=======
-module.exports = SignIn;
->>>>>>> origin/googlesignin
