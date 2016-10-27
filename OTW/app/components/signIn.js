@@ -5,7 +5,8 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableHighlight
 } from 'react-native';
 
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
@@ -92,6 +93,7 @@ class SignIn extends Component {
     .then((user) => {
       console.log(user);
       this.setState({user: user});
+      // TODO, add navigate away element here
     })
     .catch((err) => {
       console.log('Wrong info', err);

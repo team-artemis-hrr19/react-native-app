@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 
 import {
@@ -19,7 +18,7 @@ class GroupChat extends Component{
   	super(props)
     var sb = SendBird.getInstance();
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-  
+
   	this.state ={
       channel: props.route.channel,
       dataSource: ds.cloneWithRows([]),
@@ -27,15 +26,16 @@ class GroupChat extends Component{
       messageArray: [],
     }
   }
+
   componentWillUnMount(){
     sb.removeChannelHandler('MessageHandler');
   }
 
   componentWillMount() {
     this.getOldMessages();
-    
+
     var thisInstance = this;
-    
+
     var ChannelHandler = new sb.ChannelHandler();
 
     ChannelHandler.onMessageReceived = function(channel, message){
@@ -51,7 +51,7 @@ class GroupChat extends Component{
      };
 
     sb.addChannelHandler('MessageHandler', ChannelHandler);
-  } 
+  }
 
   goBack() {
     this.props.navigator.pop()
@@ -118,19 +118,19 @@ class GroupChat extends Component{
             renderRow={(rowData) => {
             return(
               <TouchableHighlight
-              style={styles.button} 
+              style={styles.button}
               >
                 <View>
                   <Text style={styles.label}> {rowData.sender.nickname} </Text>
                   <Text style={styles.label}> {rowData.message} </Text>
-                </View>  
+                </View>
               </TouchableHighlight>
             )
           }}
-        /> 
+        />
 
         </View>
-          
+
         <View style={styles.inputContainer}>
           <View style={{flex:1, justifyContent: 'center'}}>
             <TextInput
@@ -208,7 +208,7 @@ class GroupChat extends Component{
       backgroundColor: '#ffffff'
     },
     backBorder:{
-      borderColor:'#000', 
+      borderColor:'#000',
       borderWidth: 1,
       borderRadius: 2
     },

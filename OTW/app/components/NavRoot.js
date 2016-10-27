@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {NavigationExperimental} from 'react-native';
 
+import getRoute from '../navRoutes';
+
 //components
 import Home from './Home';
 import SignIn from './signIn';
@@ -25,21 +27,7 @@ class NavRoot extends Component {
 
   _renderScene(props) {
     const {route} = props.scene;
-    if (route.key === 'home') {
-      return (
-        <Home
-          _handleNavigate = {this._handleNavigate.bind(this)}
-        />
-      );
-    }
-    if (route.key === 'signIn') {
-      return (
-        <SignIn
-          _handleNavigate = {this._handleNavigate.bind(this)}
-        />
-      );
-    }
-    // TODO: add other routes
+    return getRoute(route, this._handleNavigate.bind(this));
   }
 
   _handleBackAction () {

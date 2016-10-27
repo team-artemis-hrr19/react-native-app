@@ -1,4 +1,3 @@
-//test Home component
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
@@ -12,6 +11,14 @@ const route = {
   }
 }
 
+const chat = {
+  type: 'push',
+  route: {
+    key: 'groupchat',
+    title: 'Group Chat'
+  }
+}
+
 const Home = ({_handleNavigate}) => {
   return (
     <View style={styles.container}>
@@ -22,6 +29,10 @@ const Home = ({_handleNavigate}) => {
       <Button
         onPress={() => _handleNavigate(route)}
         label='Go To SignIn'
+      />
+      <Button
+        onPress={() => _handleNavigate(chat)}
+        label="Group Chat"
       />
     </View>
   );

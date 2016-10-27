@@ -17,7 +17,7 @@ class Main extends Component{
   	this.state={
       user:props.route.username
   	}
-  
+
   }
 
   onPressInviteFriends() {
@@ -28,9 +28,9 @@ class Main extends Component{
   sendbirdConnect() {
     var thisInstance = this
     sb = new SendBird({ appId: '88DAD638-1ABE-4C19-9032-E4FE9B49A720'});
-    sb.connect(this.state.user.email, function(user, err){  
+    sb.connect(this.state.user.email, function(user, err){
       if(err){
-        console.log("error in signin.js", err);d
+        console.log("error in signin.js", err);
         return;
       }
       sb.updateCurrentUserInfo(thisInstance.state.user.name, '', function(response, error) {
@@ -40,13 +40,13 @@ class Main extends Component{
         }
        thisInstance.onPressInviteFriends()
       });
-    }); 
+    });
 
   }
   render() {
   	return (
   	  <View style={styles.container}>
-  	  	<TouchableHighlight 
+  	  	<TouchableHighlight
   	  	  style={styles.button}
   	  	  uderlayColor={'#106FEB'}
   	  	  onPress={this.sendbirdConnect.bind(this)}
@@ -55,10 +55,7 @@ class Main extends Component{
   	  	</TouchableHighlight>
   	  </View>
   	)
-
-  }  
-
-
+  }
 }
 
 var styles = StyleSheet.create({
