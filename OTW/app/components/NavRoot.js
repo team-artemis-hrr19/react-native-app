@@ -28,7 +28,7 @@ class NavRoot extends Component {
     if (route.key === 'home') {
       return (
         <Home
-        _handleNavigate = {this._handleNavigate}
+          _handleNavigate = {this._handleNavigate}
         />
       );
     }

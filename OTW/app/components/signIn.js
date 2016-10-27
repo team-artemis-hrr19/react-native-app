@@ -5,8 +5,10 @@ import {
   Text,
   View,
   TextInput,
-  TouchableHighlight
+  TouchableOpacity
 } from 'react-native';
+
+import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 class SignIn extends Component {
   constructor(props) {
@@ -17,31 +19,100 @@ class SignIn extends Component {
      };
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text> Username </Text>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(username) => this.setState({username})}
-          value={this.state.username}
-        />
-        <Text> Password </Text>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          secureTextEntry={true}
-          onChangeText={(password) => this.setState({password})}
-          value={this.state.password}
-        />
+  componentDidMount() {
+    this._setupGoogleSignin();
+  }
 
+  goToMain(){
+    this.props.navigator.push({title:'main', username:this.state.user})
+  }
+
+  render() {
+    if (!this.state.user) {
+      return (
+        <View style={styles.container}>
+        <GoogleSigninButton
+        style={{width: 212, height: 48}}
+        size={GoogleSigninButton.Size.Standard}
+        color={GoogleSigninButton.Color.Dark}
+        onPress={this._signIn.bind(this)} />
+        </View>
+      );
+    }
+
+    if (this.state.user) {
+      return (
+        <View style={styles.container}>
+        <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>
+        Welcome {this.state.user.name}
+        </Text>
+        <Text> Your email is: {this.state.user.email}</Text>
+
+<<<<<<< HEAD
         <TouchableHighlight
         onPress={this.login}
         style={styles.button}
         >
           <Text style={styles.buttonText}> Sign In </Text>
         </TouchableHighlight>
+||||||| merged common ancestors
+        <TouchableHighlight
+        onPress={this.login}
+        style={styles.button}
+        >
+          <Text style={styles.buttonText}> Sign In </Text>
+        </TouchableHighlight>
+=======
+        <TouchableOpacity onPress={() => {this._signOut(); }}>
+        <View style={{marginTop: 50}}>
+            <Text> Log out </Text>
+          </View>
+        </TouchableOpacity>
+
+         <TouchableOpacity onPress={() => {this.goToMain(); }}>
+        <View style={{marginTop: 50}}>
+            <Text> Main page </Text>
+          </View>
+        </TouchableOpacity>
+>>>>>>> origin/googlesignin
       </View>
-    );
+      );
+    }
+  }
+  async _setupGoogleSignin() {
+    try {
+      await GoogleSignin.hasPlayServices({ autoResolve: true });
+      await GoogleSignin.configure({
+        iosClientId: '45962405840-l5fdrhgnm36iagp4fjn61rvu8fj5ets1.apps.googleusercontent.com',
+        offlineAccess: false
+      });
+
+      const user = await GoogleSignin.currentUserAsync();
+      console.log(user);
+      this.setState({user});
+    }
+    catch(err) {
+      console.log('Signin Error', err.code, err.message);
+    }
+  }
+
+  _signIn() {
+    GoogleSignin.signIn()
+    .then((user) => {
+      console.log(user);
+      this.setState({user: user});
+    })
+    .catch((err) => {
+      console.log('Wrong info', err);
+    })
+    .done();
+  }
+
+  _signOut() {
+    GoogleSignin.revokeAccess().then(() => GoogleSignin.signOut()).then(() => {
+      this.setState({user: null});
+    })
+    .done();
   }
 }
 
@@ -54,31 +125,16 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
   },
-  buttonText: {
-      fontSize: 18,
-      color: '#111',
-      alignSelf: 'center'
-  },
-  button: {
-      height: 45,
-      flexDirection: 'row',
-      backgroundColor: 'lightblue',
-      borderColor: 'white',
-      borderWidth: 1,
-      borderRadius: 8,
-      marginBottom: 10,
-      marginTop: 10,
-      alignSelf: 'stretch',
-      justifyContent: 'center'
-  },
 });
+<<<<<<< HEAD
 
 export default SignIn;
+||||||| merged common ancestors
+
+module.exports = SignIn;
+=======
+module.exports = SignIn;
+>>>>>>> origin/googlesignin
