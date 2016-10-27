@@ -28,14 +28,14 @@ class NavRoot extends Component {
     if (route.key === 'home') {
       return (
         <Home
-          _handleNavigate = {this._handleNavigate}
+          _handleNavigate = {this._handleNavigate.bind(this)}
         />
       );
     }
     if (route.key === 'signIn') {
       return (
         <SignIn
-          _handleNavigate = {this._handleNavigate}
+          _handleNavigate = {this._handleNavigate.bind(this)}
         />
       );
     }
@@ -50,7 +50,7 @@ class NavRoot extends Component {
     return true;
   }
 
-  _handleNavigate() {
+  _handleNavigate(action) {
     switch(action && action.type) {
       case 'push':
         this.props.pushRoute(action.route);
