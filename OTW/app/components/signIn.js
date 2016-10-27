@@ -88,7 +88,7 @@ class SignIn extends Component {
     .then((user) => {
       console.log('user in signin', user);
       this.props.updateUser(user);
-      this.props._handleNavigate({type: 'back'});
+      this.props._handleNavigate({type: 'back'}); // TODO figure out where to redirect this to
     })
     .catch((err) => {
       console.log('Wrong info', err);
@@ -98,8 +98,7 @@ class SignIn extends Component {
 
   _signOut() {
     GoogleSignin.revokeAccess().then(() => GoogleSignin.signOut()).then(() => {
-      // change to update store
-      this.setState({user: null});
+      this.props.removeUser();
     })
     .done();
   }
