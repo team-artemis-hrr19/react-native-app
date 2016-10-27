@@ -8,7 +8,6 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import {appId} from '../appId'
 
 var SendBird = require('sendbird');
 
