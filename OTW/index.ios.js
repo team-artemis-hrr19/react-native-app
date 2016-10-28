@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-var SignUp = require('./app/components/signUp.js')
-var Help = require('./app/components/help.js')
+
+var SignIn = require('./app/components/signIn.js')
+var Helper = require('./app/components/helper.js')
 
 import {
   AppRegistry,
@@ -18,7 +19,7 @@ export default class OTW extends Component {
         style={styles.container}
         initialRoute={{
           title: 'On The Way',
-          component: Help
+          component: Helper
         }} />
     );
   }

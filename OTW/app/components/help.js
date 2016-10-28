@@ -9,15 +9,26 @@ import {
   MapView
 } from 'react-native';
 
-class SignIn extends Component {
-  
+class Help extends Component {
+
+  onRegionChangeComplete(region) {
+    console.log(region.longitude);
+    console.log(region.latitude);
+  }
+
+  getHelp(){
+    
+  }
+
   render() {
     return (
-      <View style={styles.container}>
+      <View>
 
         <MapView
           style={{height: 200, margin: 40}}
           showsUserLocation={true}
+          followUserLocation={true}
+          onRegionChangeComplete={this.onRegionChangeComplete}
         />
 
         <TouchableHighlight 
@@ -25,7 +36,7 @@ class SignIn extends Component {
           style={styles.button}
           >
           <Text style={styles.buttonText}> Get Help </Text>
-        </TouchableHighlight>
+        </TouchableHighlight>    
       </View>
     );
   }
@@ -67,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = SignIn;
+module.exports = Help;
