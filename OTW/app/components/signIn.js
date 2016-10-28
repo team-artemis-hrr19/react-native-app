@@ -11,7 +11,7 @@ import {
 
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
-import sendBirdConnect from '../utils/sendBird';
+import {sendBirdConnect} from '../utils/sendBird';
 
 class SignIn extends Component {
   constructor(props) {
@@ -49,13 +49,6 @@ class SignIn extends Component {
         />
         <Text> Your email is: {this.props.user.get('email')}</Text>
 
-        <TouchableHighlight
-        onPress={this.login}
-        style={styles.button}
-        >
-          <Text style={styles.buttonText}> Sign In </Text>
-        </TouchableHighlight>
-
         <TouchableOpacity onPress={() => {this._signOut(); }}>
           <View style={{marginTop: 50}}>
             <Text> Log out </Text>
@@ -71,6 +64,7 @@ class SignIn extends Component {
       );
     }
   }
+
   async _setupGoogleSignin() {
     try {
       await GoogleSignin.hasPlayServices({ autoResolve: true });

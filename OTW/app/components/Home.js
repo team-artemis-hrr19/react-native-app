@@ -19,12 +19,29 @@ const chat = {
   }
 }
 
-const Home = ({_handleNavigate}) => {
+const invite = {
+  type: 'push',
+  route: {
+    key: 'inviteFriends',
+    title: 'Invite Friends'
+  }
+}
+
+const signUp = {
+  type: 'push',
+  route: {
+    key: 'signUp'
+  }
+}
+
+const Home = ({_handleNavigate, user}) => {
+  console.log('home props', user);
   return (
     <View style={styles.container}>
       <Text>
         Hello World!
         This is the Home Screen
+        User: {user && user.get('email')}
       </Text>
       <Button
         onPress={() => _handleNavigate(route)}
@@ -33,6 +50,14 @@ const Home = ({_handleNavigate}) => {
       <Button
         onPress={() => _handleNavigate(chat)}
         label="Group Chat"
+      />
+      <Button
+        onPress={() => _handleNavigate(invite)}
+        label="Invite Friends"
+      />
+      <Button
+        onPress = {() => _handleNavigate(signUp)}
+        label="Sign Up"
       />
     </View>
   );

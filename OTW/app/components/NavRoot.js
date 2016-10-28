@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {NavigationExperimental} from 'react-native';
 
-import getRoute from '../navRoutes';
+import getComponent from '../utils/getComponent';
 
 //components
 import Home from './Home';
@@ -27,7 +27,7 @@ class NavRoot extends Component {
 
   _renderScene(props) {
     const {route} = props.scene;
-    return getRoute(route, this._handleNavigate.bind(this));
+    return getComponent(route.key, this._handleNavigate.bind(this));
   }
 
   _handleBackAction () {
@@ -64,42 +64,3 @@ class NavRoot extends Component {
 }
 
 export default NavRoot;
-
-// var GroupChat = require('./app/components/groupchat.js')
-// var Main = require('./app/components/main.js')
-// var SignIn = require('./app/components/signIn.js')
-// var SignUp = require('./app/components/signUp.js')
-// var InviteFriends = require('./app/components/inviteFriends.js')
-
-// const ROUTES = {
-//   groupChat: GroupChat,
-//   main:Main,
-//   signUp:SignUp,
-//   signIn:SignIn,
-//   inviteFriends:InviteFriends,
-// };
-
-// TODO: merge David's changes into main component of app
-//
-// export default class OTW extends Component {
-
-//   renderScene(route, navigator) {
-//     var Component = ROUTES[route.title];
-//     console.log('route = ',route, 'navigator = ',navigator)
-//     return <Component route={route} navigator={navigator} />;
-//   }
-
-//   render() {
-//     return (
-//       <Navigator
-//         style={styles.container}
-//         initialRoute={{title: 'signIn', component: SignIn}}
-//         renderScene={this.renderScene}
-//         configureScene={() => {
-//           return Navigator.SceneConfigs.FloatFromRight;
-//         }}
-//       />
-//     );
-//   }
-
-// }
