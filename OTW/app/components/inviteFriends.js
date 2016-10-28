@@ -1,5 +1,5 @@
-
 import React, { Component } from 'react';
+import Sendbird from 'sendbird';
 
 import {
   StyleSheet,
@@ -12,17 +12,18 @@ import {
 
 import {sendBirdGetUsers} from '../utils/sendBird';
 
+const sb = Sendbird.getInstance();
+
 class InviteFriends extends Component{
   constructor(props){
     super(props)
-
-    //var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    // this.state = {
-    //   //channel: props.route.channel,
-    //   dataSource: ds.cloneWithRows([]),
-    //   sendBirdUserQuery: sb.createUserListQuery(),
-    //   inviteList: []
-    // };
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      //channel: props.route.channel,
+      dataSource: ds.cloneWithRows([]),
+      sendBirdUserQuery: sb.createUserListQuery(),
+      inviteList: []
+    };
   }
 
   componentWillMount(){
@@ -60,16 +61,17 @@ class InviteFriends extends Component{
 
   // }
 
-  //   createChatRoom() {
-  //     sb.GroupChannel.createChannel(this.state.inviteList, false, function(channel, error) {
-  //       if (error) {
-  //         return console.error(error);
-  //       }
-  //       this.updateChannel.call(this, channel); //TODO: implement channel
-  //       //this._handleNavigation({'push', route: { key: 'groupChat'}});
-  //     });
+    createChatRoom() {
+      sb.GroupChannel.createChannel(this.props.inviteList, false, function(channel, error) {
+        if (error) {
+          return console.error(error);
+        }
+        // TODO: pass this in through redux
+        this.props.updateChannel.call(this, channel); //TODO: implement channel
+        //this._handleNavigation({'push', route: { key: 'groupChat'}});
+      });
 
-  // }
+  }
 
   render() {
     console.log('invite friends props', this.props);
