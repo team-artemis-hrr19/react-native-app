@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import InviteFriends from '../components/inviteFriends';
+import InviteFriends from '../components/InviteFriends';
 import {updateSendBirdUsers} from '../actions/sendBirdActions'
 
 const mapStateToProps = function(state){

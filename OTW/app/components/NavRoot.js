@@ -3,11 +3,6 @@ import {NavigationExperimental} from 'react-native';
 
 import getComponent from '../utils/getComponent';
 
-//components
-import Home from './Home';
-import SignIn from './signIn';
-import SignUp from './signUp';
-
 const {CardStack: NavigationCardStack} = NavigationExperimental;
 
 class NavRoot extends Component {

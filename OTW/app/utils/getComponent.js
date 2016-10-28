@@ -1,10 +1,9 @@
 import React from 'react';
 
 // all scenes here
-import Home from '../components/Home.js';
 import SignInContainer from '../containers/SignInContainer';
-import SignUp from '../components/signUp';
-import GroupChat from '../components/groupchat';
+import SignUp from '../components/SignUp';
+import GroupChat from '../components/Groupchat';
 import InviteFriendsContainer from '../containers/InviteFriendsContainer'
 import HomeContainer from '../containers/HomeContainer'
 

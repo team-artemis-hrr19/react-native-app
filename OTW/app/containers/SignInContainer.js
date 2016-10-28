@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {updateUser, removeUser} from '../actions/userActions';
-import SignIn from '../components/signIn';
+import SignIn from '../components/SignIn';
 
 function mapStateToProps(state) {
   console.log('state', state);
