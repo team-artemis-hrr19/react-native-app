@@ -1,32 +1,16 @@
-import React, { Component } from 'react';
-var SignUp = require('./app/components/signUp.js');
-var SignIn = require('./app/components/signIn.js');
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  NavigatorIOS
-} from 'react-native';
+import React from 'react';
+import {Provider} from 'react-redux';
+import {AppRegistry} from 'react-native';
 
-export default class OTW extends Component {
-  
-  render() {
-    return (
-      <NavigatorIOS
-        style={styles.container}
-        initialRoute={{
-          title: 'On The Way',
-          component: SignIn
-        }} />
-    );
-  }
-}
+import configureStore from './app/store';
+import NavigationRootContainer from './app/containers/NavRootContainer';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+const store = configureStore();
 
-AppRegistry.registerComponent('OTW', () => OTW);
+const App = () => (
+  <Provider store={store}>
+    <NavigationRootContainer />
+  </Provider>
+);
+
+AppRegistry.registerComponent('OTW', () => App);

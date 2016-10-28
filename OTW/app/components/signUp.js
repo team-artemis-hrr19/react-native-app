@@ -11,12 +11,11 @@ import {
 class SignUp extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       username: 'Username',
       password: 'Password'
      };
   }
-
 
   render() {
     return (
@@ -35,7 +34,7 @@ class SignUp extends Component {
           value={this.state.password}
         />
 
-        <TouchableHighlight 
+        <TouchableHighlight
         onPress={this.login}
         style={styles.button}
         >
@@ -82,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = SignUp;
+export default SignUp;
