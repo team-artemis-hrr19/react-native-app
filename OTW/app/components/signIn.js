@@ -5,27 +5,26 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } from 'react-native';
 
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
+import sendBirdConnect from '../utils/sendBird';
+
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    console.log('props', props);
-    this._signOut;
   }
 
   componentDidMount() {
     this._setupGoogleSignin();
   }
 
-  goToMain(){
-    this.props.handleNavigation();
-  }
-
   render() {
+    console.log(this.props);
+
     if (!this.props.user) {
       return (
         <View style={styles.container}>
@@ -42,9 +41,13 @@ class SignIn extends Component {
       return (
         <View style={styles.container}>
         <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>
-        Welcome {this.state.user.name}
+          Welcome to OTW {this.props.user.get('name')}
         </Text>
-        <Text> Your email is: {this.state.user.email}</Text>
+        <Image
+          source={{uri: this.props.user.get('photo')}}
+          style={{width: 50, height: 50}}
+        />
+        <Text> Your email is: {this.props.user.get('email')}</Text>
 
         <TouchableHighlight
         onPress={this.login}
@@ -59,7 +62,7 @@ class SignIn extends Component {
           </View>
         </TouchableOpacity>
 
-         <TouchableOpacity onPress={() => {this.goToMain(); }}>
+         <TouchableOpacity onPress={() => {this.props._handleNavigate({type: 'back'}); }}>
           <View style={{marginTop: 50}}>
             <Text> Main page </Text>
           </View>
@@ -86,9 +89,12 @@ class SignIn extends Component {
   _signIn() {
     GoogleSignin.signIn()
     .then((user) => {
-      console.log('user in signin', user);
       this.props.updateUser(user);
       this.props._handleNavigate({type: 'back'}); // TODO figure out where to redirect this to
+      sendBirdConnect(user.email, user.name, () => {
+        console.log('sendbird connection successful');
+        // TODO: update state with results of sendbird connection
+      });
     })
     .catch((err) => {
       console.log('Wrong info', err);
@@ -97,9 +103,9 @@ class SignIn extends Component {
   }
 
   _signOut() {
-    GoogleSignin.revokeAccess().then(() => GoogleSignin.signOut()).then(() => {
-      this.props.removeUser();
-    })
+    GoogleSignin.revokeAccess()
+    .then(() => GoogleSignin.signOut())
+    .then(this.props.removeUser.bind(this))
     .done();
   }
 }
