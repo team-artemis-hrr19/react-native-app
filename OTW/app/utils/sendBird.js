@@ -26,5 +26,5 @@ export function sendBirdGetUsers (cb) {
     }
     console.log(users);
     cb(users.filter(user => user.userId !== sb.currentUser.userId));
-  })ga
+  })
 }
