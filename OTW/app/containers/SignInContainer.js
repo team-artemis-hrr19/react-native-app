@@ -1,18 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {updateUser} from '../actions/userActions';
+import {updateUser, removeUser} from '../actions/userActions';
 import SignIn from '../components/signIn';
 
 function mapStateToProps(state) {
+  console.log('state', state);
   return {
-    user: state.user
+    user: state.userState
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateUser: (user) => dispatch(updateUser(user))
+    updateUser: (user) => dispatch(updateUser(user)),
+    removeUser: () => dispatch(removeUser())
   };
 }
 

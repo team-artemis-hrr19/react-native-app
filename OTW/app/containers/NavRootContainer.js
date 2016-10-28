@@ -1,25 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 
 import {push, pop} from '../actions/navActions';
 import NavRoot from '../components/NavRoot';
 
 function mapStateToProps(state){
-  console.log('state', state);
-  //FIXME state doesn't have this property, only navigationState
   return {
-    navigation: state.navigationState //is state.navReducer a valid value?
+    navigation: state.navigationState,
   };
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     pushRoute: (route) => dispatch(push(route)),
-    popRoute: () => dispatch(pop())
+    popRoute: () => dispatch(pop()),
+    updateUser: () => dispatch()
   };
 }
 
-// for some reason prop navigation is not available
 const NavRootContainer = connect(
   mapStateToProps,
   mapDispatchToProps
