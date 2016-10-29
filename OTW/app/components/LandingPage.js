@@ -9,12 +9,19 @@ import {
 
 import Button from './Button';
 
-const LandingPage = ({handleNavigate}) => (
+const LandingPage = ({_handleForwardAction}) => (
     <Image source={require('../assets/background2_Fotor.png')} style={styles.background}>
     <Text style={styles.header}>OTW</Text>
     <Text style={styles.tagLine}>never be alone</Text>
-    <Button style={styles.button} label='Sign In'/>
-    <Button label='Sign Up'/>
+    <Button
+      style={styles.button}
+      label='Sign In'
+      onPress={() => _handleForwardAction('signIn')}
+    />
+    <Button
+      label='Sign Up'
+      onPress={() => _handleForwardAction('signUp')}
+    />
     <Text style={styles.footer}>Team Artemis 2016</Text>
   </Image>
 )

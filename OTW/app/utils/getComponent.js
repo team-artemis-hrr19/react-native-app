@@ -11,14 +11,15 @@ import Helper from '../components/Helper';
 import LandingPage from '../components/LandingPage';
 
 // make a new case for each scene (this is called from components/NavRoot.js)
-export default function getComponent(routeKey, handleNavigate) {
+// TODO: refactor this part to return a better component
+export default function getComponent(routeKey, _handleNavigate, _handleBackAction, _handleForwardAction) {
   switch (routeKey){
     case 'home':
-      return <LandingPage _handleNavigate = {handleNavigate} />;
+      return LandingPage({_handleNavigate, _handleForwardAction});
     case 'signIn':
-      return <SignInContainer _handleNavigate = {handleNavigate} />
+      return <SignInContainer _handleNavigate = {_handleNavigate} />
     case 'signUp':
-      return <SignUp _handleNavigate = {handleNavigate} />
+      return <SignUp _handleNavigate = {_handleNavigate} />
     case 'groupchat':
       return <GroupChat _handleNavigate={handleNavigate} />
     case 'inviteFriends':
