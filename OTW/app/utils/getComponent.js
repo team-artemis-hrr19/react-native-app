@@ -5,14 +5,13 @@ import SignInContainer from '../containers/SignInContainer';
 import SignUp from '../components/SignUp';
 import GroupChat from '../components/Groupchat';
 import InviteFriendsContainer from '../containers/InviteFriendsContainer'
-import HomeContainer from '../containers/HomeContainer';
 import HelpContainer from '../containers/HelpContainer';
 import Helper from '../components/Helper';
 import LandingPage from '../components/LandingPage';
 
 // make a new case for each scene (this is called from components/NavRoot.js)
 // TODO: refactor this part to return a better component
-export default function getComponent(routeKey, _handleNavigate, _handleBackAction, _handleForwardAction) {
+export default function getComponent(routeKey, _handleNavigate, _handleBackAction, _handleForwardAction, openControlPanel, closeControlPanel) {
   switch (routeKey){
     case 'home':
       return LandingPage({_handleNavigate, _handleForwardAction});
@@ -29,7 +28,13 @@ export default function getComponent(routeKey, _handleNavigate, _handleBackActio
     case 'inviteFriends':
       return <InviteFriendsContainer _handleNavigate={handleNavigate} />
     case 'help':
-      return <HelpContainer _handleNavigate={_handleNavigate} />
+      return <HelpContainer
+        _handleNavigate={_handleNavigate}
+        _handleForwardAction={_handleForwardAction}
+        _handleBackAction={_handleBackAction}
+        openControlPanel={openControlPanel}
+        closeControlPanel={closeControlPanel}
+      />
     case 'helper':
       return <Helper _handleNavigate={_handleNavigate}/>
     default:
