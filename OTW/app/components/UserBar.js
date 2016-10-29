@@ -33,12 +33,12 @@ class UserBar extends Component {
     const user = this.props.user
     if (user) {
        return (
-      <View style={styles.bar}>
+      <View style={[styles.bar, styles.shadow]}>
         <Image
           source={{uri: user && user.get('photo')}}
-          style={styles.image}
+          style={[styles.image, styles.shadow]}
         />
-        <Text style={styles.user}>
+        <Text style={[styles.user]}>
           {user.get('name')}
         </Text>
       </View>
@@ -50,17 +50,27 @@ class UserBar extends Component {
 }
 
 const styles = StyleSheet.create({
+  shadow: {
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    shadowOffset: {
+      height: 2,
+      width: 1
+    }
+  },
   bar: {
     flexDirection: 'row',
     backgroundColor: 'steelblue',
     marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 60
+    height: 60,
   },
   user: {
     textAlign: 'center',
-    margin: 10
+    margin: 10,
+    color: 'white'
   },
   image: {
     width: 40,
