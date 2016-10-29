@@ -33,20 +33,40 @@ class UserBar extends Component {
     const user = this.props.user
     if (user) {
        return (
-      <View>
-        <Text>
-          Current User: {user && user.get('name')}
-        </Text>
+      <View style={styles.bar}>
         <Image
           source={{uri: user && user.get('photo')}}
-          style={{width: 40, height: 40, borderRadius: 20}}
+          style={styles.image}
         />
+        <Text style={styles.user}>
+          {user.get('name')}
+        </Text>
       </View>
     );
     } else {
-      return (<View><Text>Current User: Guest</Text></View>)
+      return (<View><Text>Guest</Text></View>)
     }
   }
 }
+
+const styles = StyleSheet.create({
+  bar: {
+    flexDirection: 'row',
+    backgroundColor: 'steelblue',
+    marginTop: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 60
+  },
+  user: {
+    textAlign: 'center',
+    margin: 10
+  },
+  image: {
+    width: 40,
+    height: 40,
+    borderRadius: 20
+  }
+})
 
 export default UserBar;
