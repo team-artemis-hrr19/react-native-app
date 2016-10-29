@@ -16,7 +16,7 @@ class InviteFriends extends Component{
   constructor(props){
     super(props)
 
-    //var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     // this.state = {
     //   //channel: props.route.channel,
     //   dataSource: ds.cloneWithRows([]),
@@ -26,20 +26,21 @@ class InviteFriends extends Component{
   }
 
   componentWillMount(){
-    this.getUsers.bind(this)();
+    this.getUsers();
   }
 
   getUsers(){
     sendBirdGetUsers(function(users) {
-      this.updateDataSource(users);
+       //this.updateDataSource(users);
+       console.log(users)
     })
-      // var currentSendBirdUsers = users.filter((user) => {
-      //   return user.userId !== sb.currentUser.userId
-      // });
-      //  thisInstance.setState({
-      //   dataSource:thisInstance.state.dataSource.cloneWithRows(currentSendBirdUsers)
-      // });
-      // console.log(thisInstance.state.dataSource)
+    //   var currentSendBirdUsers = users.filter((user) => {
+    //     return user.userId !== sb.currentUser.userId
+    //   });
+    //    thisInstance.setState({
+    //     dataSource:thisInstance.state.dataSource.cloneWithRows(currentSendBirdUsers)
+    //   });
+    //   console.log(thisInstance.state.dataSource)
     // });
   }
 
@@ -72,7 +73,6 @@ class InviteFriends extends Component{
   // }
 
   render() {
-    console.log('invite friends props', this.props);
     return (
       <View style={styles.container}>
 
@@ -82,7 +82,7 @@ class InviteFriends extends Component{
 
         <TouchableHighlight
         style={styles.button}
-       // onPress={this.createChatRoom.bind(this)}
+        //onPress={this.createChatRoom.bind(this)}
         >
           <Text style={styles.label}> Create Chat Room </Text>
         </TouchableHighlight>
