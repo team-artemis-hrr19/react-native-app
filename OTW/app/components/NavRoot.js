@@ -65,7 +65,10 @@ class NavRoot extends Component {
       <Drawer
         ref={(ref) => this._drawer = ref}
         type="overlay"
-        content={<MenuContainer _handleForwardAction={this._handleForwardAction.bind(this)}/>}
+        content={<MenuContainer
+          _handleForwardAction={this._handleForwardAction.bind(this)}
+          closeControlPanel={this.closeControlPanel.bind(this)}
+        />}
         tapToClose={true}
         openDrawerOffset={0.6} // 60% gap on the right side of drawer
         panCloseMask={0.2}
@@ -74,6 +77,7 @@ class NavRoot extends Component {
         tweenHandler={(ratio) => ({
           main: { opacity:(2-ratio)/2 }
         })}
+        side='left'
       >
         <NavigationCardStack
           direction='vertical'

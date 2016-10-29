@@ -4,7 +4,7 @@ import {Text, View, StyleSheet} from 'react-native';
 import Button from './Button';
 import Badge from './Badge';
 
-const Menu = ({_handleForwardAction, user}) => {
+const Menu = ({_handleForwardAction, closeControlPanel, user}) => {
   return (
     <View style={styles.container}>
       <Badge user={user} />
@@ -23,6 +23,11 @@ const Menu = ({_handleForwardAction, user}) => {
       <Button
         onPress={() => _handleNavigate('inviteFriends')}
         label="Invite Friends"
+      />
+      <Button
+        onPress={closeControlPanel}
+        label="Close Panel"
+        style={{backgroundColor: 'red'}}
       />
     </View>
   );
