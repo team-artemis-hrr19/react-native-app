@@ -1,24 +1,35 @@
 import React from 'react'
-import { Text, TouchableHighlight, StyleSheet } from 'react-native'
+import {
+  Text,
+  TouchableHighlight,
+  StyleSheet } from 'react-native'
 
 const Button = ({label, onPress}) => (
   <TouchableHighlight
     underlayColor='#35b5ff'
     onPress={onPress}
     style={styles.button}>
-    <Text style={styles.label}>{label}</Text>
+    <Text style={styles.buttonText}>{label}</Text>
   </TouchableHighlight>
 )
 
 const styles = StyleSheet.create({
-  button: {
-    height: 70,
-    backgroundColor: '#22a3ed',
-    justifyContent: 'center',
-    alignItems: 'center'
+  buttonText: {
+      fontSize: 14,
+      color: '#111',
+      alignSelf: 'center'
   },
-  label: {
-    color: 'white'
+  button: {
+      height: 45,
+      width: 100,
+      flexDirection: 'row',
+      backgroundColor: '#FFEE58',
+      borderColor: 'white',
+      borderWidth: 1,
+      borderRadius: 8,
+      marginBottom: 10,
+      marginTop: 10,
+      justifyContent: 'center'
   }
 });
 

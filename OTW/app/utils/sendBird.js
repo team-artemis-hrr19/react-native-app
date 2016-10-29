@@ -2,7 +2,7 @@ import SendBird from 'sendbird';
 
 const appId = '88DAD638-1ABE-4C19-9032-E4FE9B49A720';
 
-const sb = new SendBird({appId});
+const sb = new SendBird({appId: appId});
 
 export function sendBirdConnect(userEmail, username, cb) {
   sb.connect(userEmail, function(user, err){

@@ -11,10 +11,11 @@ import Button from './Button';
 
 const LandingPage = ({handleNavigate}) => (
     <Image source={require('../assets/background2_Fotor.png')} style={styles.background}>
-    <Text>OTW</Text>
-    <Text>never be alone</Text>
-    <Button label='Sign In'/>
+    <Text style={styles.header}>OTW</Text>
+    <Text style={styles.tagLine}>never be alone</Text>
+    <Button style={styles.button} label='Sign In'/>
     <Button label='Sign Up'/>
+    <Text style={styles.footer}>Team Artemis 2016</Text>
   </Image>
 )
 
@@ -24,6 +25,55 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     resizeMode: 'contain'
+  },
+  button: {
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    shadowOffset: {
+      height: 2,
+      width: 1
+    }
+  },
+  header: {
+    fontSize: 70,
+
+    color: 'white',
+    alignSelf: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    shadowOffset: {
+      height: 2,
+      width: 1
+    }
+  },
+  tagLine: {
+    fontSize: 20,
+    color: 'white',
+    alignSelf: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    shadowOffset: {
+      height: 2,
+      width: 1
+    }
+  },
+  footer: {
+    fontSize: 15,
+    color: 'white',
+    alignSelf: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    shadowOffset: {
+      height: 2,
+      width: 1
+    }
   }
 });
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
 import Button from './Button.js';
+import UserBarContainer from '../containers/UserBarContainer';
 
 const route = {
   type: 'push',
@@ -82,7 +83,7 @@ const Home = ({_handleNavigate, user}) => {
         onPress = {() => _handleNavigate(helper)}
         label="Helper"
       />
-
+      <UserBarContainer />
     </View>
   );
 }

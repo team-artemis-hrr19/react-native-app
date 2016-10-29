@@ -8,12 +8,13 @@ import InviteFriendsContainer from '../containers/InviteFriendsContainer'
 import HomeContainer from '../containers/HomeContainer';
 import HelpContainer from '../containers/HelpContainer';
 import Helper from '../components/Helper';
+import LandingPage from '../components/LandingPage';
 
 // make a new case for each scene (this is called from components/NavRoot.js)
 export default function getComponent(routeKey, handleNavigate) {
   switch (routeKey){
     case 'home':
-      return <HomeContainer _handleNavigate = {handleNavigate} />;
+      return <LandingPage _handleNavigate = {handleNavigate} />;
     case 'signIn':
       return <SignInContainer _handleNavigate = {handleNavigate} />
     case 'signUp':
@@ -27,6 +28,6 @@ export default function getComponent(routeKey, handleNavigate) {
     case 'helper':
       return <Helper _handleNavigate={handleNavigate}/>
     default:
-      return <HomeContainer _handleNavigate = {handleNavigate} />;
+      return <LandingPage _handleNavigate = {handleNavigate} />;
   }
 }
