@@ -4,12 +4,12 @@ import {
   TouchableHighlight,
   StyleSheet } from 'react-native'
 
-const Button = ({label, onPress}) => (
+const Button = ({label, onPress, customStyles}) => (
   <TouchableHighlight
     underlayColor='#35b5ff'
     onPress={onPress}
-    style={styles.button}>
-    <Text style={styles.buttonText}>{label}</Text>
+    style={customStyles && customStyles.button || styles.button}>
+    <Text style={customStyles && customStyles.buttonText || styles.buttonText}>{label}</Text>
   </TouchableHighlight>
 )
 
@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
   buttonText: {
       fontSize: 14,
       color: '#111',
-      alignSelf: 'center'
+      alignSelf: 'center',
+      fontWeight: 'bold'
   },
   button: {
       height: 45,

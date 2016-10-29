@@ -3,7 +3,7 @@ import {NavigationExperimental} from 'react-native';
 import Drawer from 'react-native-drawer';
 
 import getComponent from '../utils/getComponent';
-import HomeContainer from '../containers/HomeContainer';
+import MenuContainer from '../containers/MenuContainer';
 import Button from './Button';
 
 const {CardStack: NavigationCardStack} = NavigationExperimental;
@@ -65,7 +65,7 @@ class NavRoot extends Component {
       <Drawer
         ref={(ref) => this._drawer = ref}
         type="overlay"
-        content={<HomeContainer />}
+        content={<MenuContainer />}
         tapToClose={true}
         openDrawerOffset={0.2} // 20% gap on the right side of drawer
         panCloseMask={0.2}

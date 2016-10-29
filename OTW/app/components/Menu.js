@@ -49,7 +49,7 @@ const helper = {
   }
 };
 
-const Home = ({_handleNavigate, user}) => {
+const Menu = ({_handleBackAction, user}) => {
   return (
     <View style={styles.container}>
       <Text>
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home;
+export default Menu;
