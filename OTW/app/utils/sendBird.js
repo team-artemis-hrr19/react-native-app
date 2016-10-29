@@ -22,7 +22,7 @@ export function sendBirdGetUsers (cb) {
   const query = sb.createUserListQuery();
   query.next(function(users, err) {
     if(err) {
-      console.error(err);
+      return console.warn('error getting users from Sendbird', err);
     }
     console.log(users);
     cb(users.filter(user => user.userId !== sb.currentUser.userId));

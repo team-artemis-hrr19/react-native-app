@@ -16,6 +16,8 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
+// {type: 'UPDATE_SENDBIRD_USERS', users: users}
+
 InviteFriendsContainer = connect(
   mapStateToProps,
   mapDispatchToProps

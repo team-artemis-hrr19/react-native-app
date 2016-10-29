@@ -34,8 +34,21 @@ const signUp = {
   }
 }
 
+const help = {
+  type: 'push',
+  route: {
+    key: 'help'
+  }
+}
+
+const helper = {
+  type: 'push',
+  route: {
+    key: 'helper'
+  }
+};
+
 const Home = ({_handleNavigate, user}) => {
-  console.log('home props', user);
   return (
     <View style={styles.container}>
       <Text>
@@ -59,6 +72,17 @@ const Home = ({_handleNavigate, user}) => {
         onPress = {() => _handleNavigate(signUp)}
         label="Sign Up"
       />
+
+      <Button
+        onPress = {() => _handleNavigate(help)}
+        label="Help"
+      />
+
+      <Button
+        onPress = {() => _handleNavigate(helper)}
+        label="Helper"
+      />
+
     </View>
   );
 }
