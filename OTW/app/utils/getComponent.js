@@ -17,7 +17,11 @@ export default function getComponent(routeKey, _handleNavigate, _handleBackActio
     case 'home':
       return LandingPage({_handleNavigate, _handleForwardAction});
     case 'signIn':
-      return <SignInContainer _handleNavigate = {_handleNavigate} />
+      return <SignInContainer
+          _handleNavigate={_handleNavigate}
+          _handleBackAction={_handleBackAction}
+          _handleForwardAction={_handleForwardAction}
+        />
     case 'signUp':
       return <SignUp _handleNavigate = {_handleNavigate} />
     case 'groupchat':
@@ -25,9 +29,9 @@ export default function getComponent(routeKey, _handleNavigate, _handleBackActio
     case 'inviteFriends':
       return <InviteFriendsContainer _handleNavigate={handleNavigate} />
     case 'help':
-      return <HelpContainer _handleNavigate={handleNavigate} />
+      return <HelpContainer _handleNavigate={_handleNavigate} />
     case 'helper':
-      return <Helper _handleNavigate={handleNavigate}/>
+      return <Helper _handleNavigate={_handleNavigate}/>
     default:
       return <LandingPage _handleNavigate = {handleNavigate} />;
   }
