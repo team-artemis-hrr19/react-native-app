@@ -12,12 +12,14 @@ import {
 class Help extends Component {
 
   onRegionChangeComplete(region) {
-    console.log(region.longitude);
-    console.log(region.latitude);
+    this.props.updateLocation({
+      lat: region.latitude,
+      long: region.longitude
+    });
   }
 
   getHelp(){
-    
+
   }
 
   render() {
@@ -28,15 +30,15 @@ class Help extends Component {
           style={{height: 200, margin: 40}}
           showsUserLocation={true}
           followUserLocation={true}
-          onRegionChangeComplete={this.onRegionChangeComplete}
+          onRegionChangeComplete={this.onRegionChangeComplete.bind(this)}
         />
 
-        <TouchableHighlight 
+        <TouchableHighlight
           onPress={this.getHelp}
           style={styles.button}
           >
           <Text style={styles.buttonText}> Get Help </Text>
-        </TouchableHighlight>    
+        </TouchableHighlight>
       </View>
     );
   }
@@ -78,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = Help;
+export default Help;
