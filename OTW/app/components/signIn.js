@@ -55,7 +55,7 @@ class SignIn extends Component {
           </View>
         </TouchableOpacity>
 
-         <TouchableOpacity onPress={() => {this.props._handleNavigate({type: 'back'}); }}>
+         <TouchableOpacity onPress={() => this.props._handleBackAction()}>
           <View style={{marginTop: 50}}>
             <Text> Main page </Text>
           </View>
@@ -84,11 +84,12 @@ class SignIn extends Component {
     GoogleSignin.signIn()
     .then((user) => {
       this.props.updateUser(user);
-      this.props._handleNavigate({type: 'back'}); // TODO figure out where to redirect this to
-      sendBirdConnect(user.email, user.name, () => {
-        console.log('sendbird connection successful');
+      this.props._handleForwardAction('help'); // TODO figure out where to redirect this to
+      //FIXME: sendbird not working
+      //sendBirdConnect(user.email, user.name, () => {
+       // console.log('sendbird connection successful');
         // TODO: update state with results of sendbird connection
-      });
+     // });
     })
     .catch((err) => {
       console.log('Wrong info', err);

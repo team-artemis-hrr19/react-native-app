@@ -17,7 +17,14 @@ class NavRoot extends Component {
 
   _renderScene(props) {
     const {route} = props.scene;
-    return getComponent(route.key, this._handleNavigate, this._handleBackAction.bind(this), this._handleForwardAction.bind(this));
+    return getComponent(
+      route.key,
+      this._handleNavigate,
+      this._handleBackAction.bind(this),
+      this._handleForwardAction.bind(this),
+      this.openControlPanel.bind(this),
+      this.closeControlPanel.bind(this)
+    );
   }
 
   _handleBackAction () {
@@ -68,7 +75,6 @@ class NavRoot extends Component {
           main: { opacity:(2-ratio)/2 }
         })}
       >
-      <Button label='Open Drawer' onPress={this.openControlPanel.bind(this)} />
         <NavigationCardStack
           direction='vertical'
           navigationState={this.props.navigation}

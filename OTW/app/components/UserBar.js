@@ -7,33 +7,18 @@ import {
   Image
 } from 'react-native';
 
-// const UserBar = () => (
-//   <TabBarIOS>
-//     <TabBarIOS.Item
-//       title="Help"
-//       unselectedTintColor="yellow"
-//     >
-//     </TabBarIOS.Item>
-//   </TabBarIOS>
-// );
+import Button from './Button';
 
-// var styles = StyleSheet.create({
-//   tabContent: {
-//     flex: 1,
-//     alignItems: 'center',
-//   },
-//   tabText: {
-//     color: 'white',
-//     margin: 50,
-//   },
-// });
-//
 class UserBar extends Component {
   render() {
     const user = this.props.user
     if (user) {
        return (
       <View style={[styles.bar, styles.shadow]}>
+      <Button
+        onPress={this.props.openControlPanel}
+        label='Hamburger'
+      />
         <Image
           source={{uri: user && user.get('photo')}}
           style={[styles.image, styles.shadow]}

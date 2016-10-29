@@ -9,6 +9,9 @@ import {
   MapView
 } from 'react-native';
 
+import UserBarContainer from '../containers/UserBarContainer';
+import Button from './Button';
+
 class Help extends Component {
 
   onRegionChangeComplete(region) {
@@ -19,26 +22,28 @@ class Help extends Component {
   }
 
   getHelp(){
-
+    return
   }
 
   render() {
     return (
       <View>
+        <UserBarContainer
+          openControlPanel={this.props.openControlPanel}
+        />
 
         <MapView
-          style={{height: 200, margin: 40}}
+          style={{height: 450, margin: 20}}
           showsUserLocation={true}
           followUserLocation={true}
           onRegionChangeComplete={this.onRegionChangeComplete.bind(this)}
         />
 
-        <TouchableHighlight
-          onPress={this.getHelp}
+        <Button
+          label='Get Help'
+          onPress={this.getHelp.bind(this)}
           style={styles.button}
-          >
-          <Text style={styles.buttonText}> Get Help </Text>
-        </TouchableHighlight>
+        />
       </View>
     );
   }
