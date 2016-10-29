@@ -11,6 +11,7 @@ import {
 
 import UserBarContainer from '../containers/UserBarContainer';
 import Button from './Button';
+import BottomBarContainer from '../containers/BottomBarContainer';
 
 class Help extends Component {
 
@@ -33,17 +34,13 @@ class Help extends Component {
         />
 
         <MapView
-          style={{height: 450, margin: 20}}
+          style={{height: 450, margin: 5}}
           showsUserLocation={true}
           followUserLocation={true}
           onRegionChangeComplete={this.onRegionChangeComplete.bind(this)}
         />
 
-        <Button
-          label='Get Help'
-          onPress={this.getHelp.bind(this)}
-          style={styles.button}
-        />
+        <BottomBarContainer/>
       </View>
     );
   }

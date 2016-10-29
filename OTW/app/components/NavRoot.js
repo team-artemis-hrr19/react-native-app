@@ -67,7 +67,7 @@ class NavRoot extends Component {
         type="overlay"
         content={<MenuContainer _handleForwardAction={this._handleForwardAction.bind(this)}/>}
         tapToClose={true}
-        openDrawerOffset={0.2} // 20% gap on the right side of drawer
+        openDrawerOffset={0.6} // 60% gap on the right side of drawer
         panCloseMask={0.2}
         closedDrawerOffset={-3}
         styles={drawerStyles}
@@ -87,8 +87,9 @@ class NavRoot extends Component {
 }
 
 const drawerStyles = {
-  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+  drawer: { shadowColor: '#000000', shadowOpacity: 0.5, shadowRadius: 3},
   main: {paddingLeft: 3},
+  justifyContent: 'flex-start',
 }
 
 export default NavRoot;
