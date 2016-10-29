@@ -1,89 +1,29 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
-import Button from './Button.js';
-import UserBarContainer from '../containers/UserBarContainer';
+import Button from './Button';
+import Badge from './Badge';
 
-const route = {
-  type: 'push',
-  route: {
-    key: 'signIn',
-    title: 'signIn'
-  }
-}
-
-const chat = {
-  type: 'push',
-  route: {
-    key: 'groupchat',
-    title: 'Group Chat'
-  }
-}
-
-const invite = {
-  type: 'push',
-  route: {
-    key: 'inviteFriends',
-    title: 'Invite Friends'
-  }
-}
-
-const signUp = {
-  type: 'push',
-  route: {
-    key: 'signUp'
-  }
-}
-
-const help = {
-  type: 'push',
-  route: {
-    key: 'help'
-  }
-}
-
-const helper = {
-  type: 'push',
-  route: {
-    key: 'helper'
-  }
-};
-
-const Menu = ({_handleBackAction, user}) => {
+const Menu = ({_handleForwardAction, user}) => {
   return (
     <View style={styles.container}>
-      <Text>
-        Hello World!
-        This is the Home Screen
-        User: {user && user.get('email')}
-      </Text>
+      <Badge user={user} />
       <Button
-        onPress={() => _handleNavigate(route)}
-        label='Go To SignIn'
+        onPress={() => _handleForwardAction('help')}
+        label='Help'
       />
       <Button
-        onPress={() => _handleNavigate(chat)}
+        onPress = {() => _handleForwardAction('helper')}
+        label="Helper"
+      />
+      <Button
+        onPress={() => _handleForwardAction('groupChat')}
         label="Group Chat"
       />
       <Button
-        onPress={() => _handleNavigate(invite)}
+        onPress={() => _handleNavigate('inviteFriends')}
         label="Invite Friends"
       />
-      <Button
-        onPress = {() => _handleNavigate(signUp)}
-        label="Sign Up"
-      />
-
-      <Button
-        onPress = {() => _handleNavigate(help)}
-        label="Help"
-      />
-
-      <Button
-        onPress = {() => _handleNavigate(helper)}
-        label="Helper"
-      />
-      <UserBarContainer />
     </View>
   );
 }
@@ -93,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#6d8764',
   }
 });
 

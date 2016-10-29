@@ -13,7 +13,7 @@ const Badge = ({user}) => (
       style={[styles.image, styles.shadow]}
     />
     <Text style={[styles.user]}>
-      {user.get('name')}
+      {user ? user.get('name') : 'Guest'}
     </Text>
   </View>
 );
@@ -28,11 +28,15 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    margin: 8
   },
   badge: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#76608a',
+    height: 45,
+    borderRadius: 8
   }
 });
 

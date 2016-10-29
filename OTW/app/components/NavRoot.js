@@ -65,7 +65,7 @@ class NavRoot extends Component {
       <Drawer
         ref={(ref) => this._drawer = ref}
         type="overlay"
-        content={<MenuContainer />}
+        content={<MenuContainer _handleForwardAction={this._handleForwardAction.bind(this)}/>}
         tapToClose={true}
         openDrawerOffset={0.2} // 20% gap on the right side of drawer
         panCloseMask={0.2}

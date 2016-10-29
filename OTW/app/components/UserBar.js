@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
   },
   bar: {
     flexDirection: 'row',
-    backgroundColor: 'steelblue',
-    marginTop: 20,
+    backgroundColor: '#76608a',
+    marginTop: 30,
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 60,

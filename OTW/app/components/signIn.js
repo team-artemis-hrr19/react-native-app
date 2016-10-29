@@ -25,7 +25,7 @@ class SignIn extends Component {
   render() {
     console.log(this.props);
 
-    if (!this.props.user) {
+    if (this.props.user.get('name') === 'Guest') {
       return (
         <View style={styles.container}>
         <GoogleSigninButton
@@ -35,9 +35,7 @@ class SignIn extends Component {
         onPress={this._signIn.bind(this)} />
         </View>
       );
-    }
-
-    if (this.props.user) {
+    } else {
       return (
         <View style={styles.container}>
         <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>

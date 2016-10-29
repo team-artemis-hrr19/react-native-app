@@ -27,7 +27,7 @@ class Help extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <UserBarContainer
           openControlPanel={this.props.openControlPanel}
         />
@@ -52,9 +52,7 @@ class Help extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F8F8FF',
   },
   welcome: {
     fontSize: 20,

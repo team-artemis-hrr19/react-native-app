@@ -15,15 +15,16 @@ const styles = StyleSheet.create({
   button: {
     marginLeft: 15,
     justifyContent: 'flex-start',
-    backgroundColor: 'steelblue',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   buttonText: {
+    color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
     textShadowColor: "#000000",
     textShadowRadius: 1,
     textShadowOffset: {
-      height: 1,
+      height: 0.5,
       width: 0.5
     }
   }
