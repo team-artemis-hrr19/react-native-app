@@ -2,7 +2,9 @@ import {createStore} from 'redux';
 
 import rootReducer from './reducers/rootReducer';
 
-export default function configureStore () {
+var store = configureStore();
+function configureStore () {
+ 
   const store = createStore(rootReducer)
 
   //configure for hot module reloading in dev environmet;
@@ -14,3 +16,5 @@ export default function configureStore () {
     }
   return store;
 }
+
+export default store;

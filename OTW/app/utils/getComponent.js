@@ -3,7 +3,7 @@ import React from 'react';
 // all scenes here
 import SignInContainer from '../containers/SignInContainer';
 import SignUp from '../components/SignUp';
-import GroupChat from '../components/Groupchat';
+import GroupChat from '../components/GroupChat';
 import InviteFriendsContainer from '../containers/InviteFriendsContainer'
 import HomeContainer from '../containers/HomeContainer'
 

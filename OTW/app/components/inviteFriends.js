@@ -10,82 +10,80 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import {sendBirdGetUsers} from '../utils/sendBird';
-
+import {sendBirdGetUsers, sendBirdCreateGroupChat} from '../utils/sendBird';
+var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2 });
 class InviteFriends extends Component{
   constructor(props){
-    super(props)
-
-    //var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    // this.state = {
-    //   //channel: props.route.channel,
-    //   dataSource: ds.cloneWithRows([]),
-    //   sendBirdUserQuery: sb.createUserListQuery(),
-    //   inviteList: []
-    // };
+    super(props) 
+    this.state = {
+    dataSource: ds.cloneWithRows([]),
+    };
   }
 
   componentWillMount(){
-    this.getUsers.bind(this)();
+    this.getUsers();
   }
 
   getUsers(){
+    var thisComponent = this;
     sendBirdGetUsers(function(users) {
-      this.updateDataSource(users);
-    })
-      // var currentSendBirdUsers = users.filter((user) => {
-      //   return user.userId !== sb.currentUser.userId
-      // });
-      //  thisInstance.setState({
-      //   dataSource:thisInstance.state.dataSource.cloneWithRows(currentSendBirdUsers)
-      // });
-      // console.log(thisInstance.state.dataSource)
-    // });
+      thisComponent.setState({
+        dataSource: thisComponent.state.dataSource.cloneWithRows(users)
+      });
+    });
   }
 
-  // onPressInvite(rowData) {
-  //   var curretInviteList = this.state.inviteList;
+  createChatRoom() {
+    var thisComponent = this;
+    sendBirdCreateGroupChat(function(channel){
+      thisComponent.props.updateChannelList(channel)
+    });
+    
+  }
 
-  //   if (curretInviteList.includes(rowData)){
-  //     curretInviteList.forEach((user, i) => {
-  //       if(user.userId === rowData.userId){
-  //         curretInviteList.splice(i, 1)
-  //       }
-  //     });
-  //   } else {
-  //     curretInviteList.push(rowData)
-  //   }
-  //   this.setState({inviteList: curretInviteList})
-  //   console.log(JSON.stringify(this.state.inviteList));
-
-  // }
-
-  //   createChatRoom() {
-  //     sb.GroupChannel.createChannel(this.state.inviteList, false, function(channel, error) {
-  //       if (error) {
-  //         return console.error(error);
-  //       }
-  //       this.updateChannel.call(this, channel); //TODO: implement channel
-  //       //this._handleNavigation({'push', route: { key: 'groupChat'}});
-  //     });
-
-  // }
 
   render() {
-    console.log('invite friends props', this.props);
     return (
       <View style={styles.container}>
 
-        <Text style={styles.button}>
-          {this.props.sendBirdUsers.map(user => user.nickname)}
-        </Text>
 
-        <TouchableHighlight
-        style={styles.button}
-       // onPress={this.createChatRoom.bind(this)}
-        >
-          <Text style={styles.label}> Create Chat Room </Text>
-        </TouchableHighlight>
+        
+         <ListView
+          sylte={styles.ListView}
+          enableEmptySections={true}
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => {
+            return(
+              <TouchableHighlight
+                tyle={styles.button}
+                onPress= {() => {this.props.updateFriendsList(rowData)}}
+              >
+                <Text style={styles.label}>{rowData.nickname} </Text>
+              </TouchableHighlight>
+            )
+          }}
+        />
+
+       <Text style={styles.button}>
+         {this.props.friendsList.map(user => user.nickname + ', ')}
+       </Text>
+
+        <View style={styles.container}>
+          <TouchableHighlight
+          style={styles.button}
+          onPress={ this.createChatRoom.bind(this) }
+          >
+            <Text style={styles.label}> Send</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+          style={styles.button}
+          //onPress={  } // should send you to the main window.
+          >
+            <Text style={styles.label}>Cancel</Text>
+          </TouchableHighlight>
+        </View>
+        
       </View>
     );
   }
@@ -105,40 +103,24 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: '#000',
-    padding: 10,
-    marginTop: 20,
+    padding: 5,
+    marginTop: 5,
     backgroundColor: '#DEC016'
   },
 
   label: {
-    flex: 1,
-    alignSelf: 'center',
-    textAlign: 'center',
+    flex: 0,
 
   },
 
-  label2: {
+  ListView: {
     flex: 1,
+    justifyContent:'space-between',
     alignSelf: 'center',
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 100,
     marginBottom:-75
   }
 });
 
 export default InviteFriends;
-
-        // <ListView
-        //   enableEmptySections={true}
-        //   //dataSource={this.state.dataSource}
-        //   renderRow={(rowData) => {
-        //     return(
-        //       <TouchableHighlight
-        //       style={styles.button}
-        //   //    onPress= {() => {this.onPressInvite(rowData)}}
-        //       >
-        //       <Text style={styles.label}> {rowData.nickname} </Text>
-        //       </TouchableHighlight>
-        //     )
-        //   }}
-        // />
