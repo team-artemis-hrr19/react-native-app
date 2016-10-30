@@ -85,7 +85,7 @@ class SignIn extends Component {
     .then((user) => {
       this.props.updateUser(user);
       this.props._handleNavigate({type: 'back'}); // TODO figure out where to redirect this to
-      sendBirdConnect(user.email, user.name, () => {
+      sendBirdConnect(user.email, user.name, (user) => {
         console.log('sendbird connection successful');
         // TODO: update state with results of sendbird connection
       });
