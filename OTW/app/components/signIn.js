@@ -82,12 +82,10 @@ class SignIn extends Component {
     GoogleSignin.signIn()
     .then((user) => {
       this.props.updateUser(user);
-      this.props._handleForwardAction('help'); // TODO figure out where to redirect this to
+      this.props._handleForwardAction('help');
       //FIXME: sendbird not working
-      //sendBirdConnect(user.email, user.name, () => {
-       // console.log('sendbird connection successful');
-        // TODO: update state with results of sendbird connection
-     // });
+      sendBirdConnect(user.email, user.name, () => {
+        console.log('sendbird connection successful');
     })
     .catch((err) => {
       console.log('Wrong info', err);

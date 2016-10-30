@@ -10,9 +10,9 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import {sendBirdGetUsers} from '../utils/sendBird';
-
 const sb = Sendbird.getInstance();
+
+import {sendBirdGetUsers, sendBirdCreateGroupChat} from '../utils/sendBird';
 
 class InviteFriends extends Component{
   constructor(props){
@@ -27,23 +27,27 @@ class InviteFriends extends Component{
   }
 
   componentWillMount(){
-    this.getUsers.bind(this)();
+    this.getUsers();
   }
 
   getUsers(){
+    var thisComponent = this;
     sendBirdGetUsers(function(users) {
-      this.updateDataSource(users);
-    })
-      // var currentSendBirdUsers = users.filter((user) => {
-      //   return user.userId !== sb.currentUser.userId
-      // });
-      //  thisInstance.setState({
-      //   dataSource:thisInstance.state.dataSource.cloneWithRows(currentSendBirdUsers)
-      // });
-      // console.log(thisInstance.state.dataSource)
-    // });
+      thisComponent.setState({
+        dataSource: thisComponent.state.dataSource.cloneWithRows(users)
+      });
+    });
   }
 
+  createChatRoom() {
+    var thisComponent = this;
+    sendBirdCreateGroupChat(function(channel){
+      thisComponent.props.updateChannelList(channel)
+    });
+
+  }
+
+<<<<<<< HEAD
   // onPressInvite(rowData) {
   //   var curretInviteList = this.state.inviteList;
 
@@ -74,20 +78,44 @@ class InviteFriends extends Component{
   }
 
   render() {
-    console.log('invite friends props', this.props);
     return (
       <View style={styles.container}>
+         <ListView
+          style={styles.ListView}
+          enableEmptySections={true}
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => {
+            return(
+              <TouchableHighlight
+                tyle={styles.button}
+                onPress= {() => {this.props.updateFriendsList(rowData)}}
+              >
+                <Text style={styles.label}>{rowData.nickname} </Text>
+              </TouchableHighlight>
+            )
+          }}
+        />
 
-        <Text style={styles.button}>
-          {this.props.sendBirdUsers.map(user => user.nickname)}
-        </Text>
+       <Text style={styles.button}>
+         {this.props.friendsList.map(user => user.nickname + ', ')}
+       </Text>
 
-        <TouchableHighlight
-        style={styles.button}
-       // onPress={this.createChatRoom.bind(this)}
-        >
-          <Text style={styles.label}> Create Chat Room </Text>
-        </TouchableHighlight>
+        <View style={styles.container}>
+          <TouchableHighlight
+          style={styles.button}
+          onPress={ this.createChatRoom.bind(this) }
+          >
+            <Text style={styles.label}> Send</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+          style={styles.button}
+          //onPress={  } // should send you to the main window.
+          >
+            <Text style={styles.label}>Cancel</Text>
+          </TouchableHighlight>
+        </View>
+
       </View>
     );
   }
@@ -107,40 +135,24 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: '#000',
-    padding: 10,
-    marginTop: 20,
+    padding: 5,
+    marginTop: 5,
     backgroundColor: '#DEC016'
   },
 
   label: {
-    flex: 1,
-    alignSelf: 'center',
-    textAlign: 'center',
+    flex: 0,
 
   },
 
-  label2: {
+  ListView: {
     flex: 1,
+    justifyContent:'space-between',
     alignSelf: 'center',
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 100,
     marginBottom:-75
   }
 });
 
 export default InviteFriends;
-
-        // <ListView
-        //   enableEmptySections={true}
-        //   //dataSource={this.state.dataSource}
-        //   renderRow={(rowData) => {
-        //     return(
-        //       <TouchableHighlight
-        //       style={styles.button}
-        //   //    onPress= {() => {this.onPressInvite(rowData)}}
-        //       >
-        //       <Text style={styles.label}> {rowData.nickname} </Text>
-        //       </TouchableHighlight>
-        //     )
-        //   }}
-        // />
