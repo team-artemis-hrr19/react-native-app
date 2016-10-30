@@ -10,86 +10,94 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-//var SendBird = require('sendbird');
+var SendBird = require('sendbird');
 var windowSize = Dimensions.get('window')
+var sb = SendBird.getInstance();
+var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 class GroupChat extends Component{
   constructor(props){
-  	super(props)
-    // var sb = SendBird.getInstance();
-    // var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
+    super(props)
   	this.state ={
       dataSource: ds.cloneWithRows([]),
+      myMessage: '',
+      messageArray: [],
     }
   }
 
   componentWillUnMount(){
-    // sb.removeChannelHandler('MessageHandler');
+     sb.removeChannelHandler('MessageHandler');
   }
 
   componentWillMount() {
-    // this.getOldMessages();
+    this.getOldMessages();
 
-    // var thisInstance = this;
+    var thisInstance = this;
 
-    // var ChannelHandler = new sb.ChannelHandler();
+    var ChannelHandler = new sb.ChannelHandler();
 
-    // ChannelHandler.onMessageReceived = function(channel, message){
-    //   var _messages = [];
-    //   _messages.push(message);
-    //   console.log('the ChannelHandler onMessageReceived was called')
-    //   _messages = _messages.concat(thisInstance.state.messageArray);
-    //   thisInstance.setState({
-    //     messageArray: _messages,
-    //     dataSource: thisInstance.state.dataSource.cloneWithRows(_messages)
-    //   });
-    //   console.log(channel, message)
-    //  };
+    ChannelHandler.onMessageReceived = function(channel, message){
+      var _messages = [];
+      _messages.push(message);
+      console.log('the ChannelHandler onMessageReceived was called')
+      _messages = _messages.concat(thisInstance.state.messageArray);
+      thisInstance.setState({
+        messageArray: _messages,
+        dataSource: thisInstance.state.dataSource.cloneWithRows(_messages)
+      });
+      console.log(channel, message)
+     };
 
-    // sb.addChannelHandler('MessageHandler', ChannelHandler);
+    sb.addChannelHandler('MessageHandler', ChannelHandler);
   }
 
-  goBack() {
-    //this.props.navigator.pop()
+
+  onDisconnect() {
+    this.props.channel.leave(function(response, error) {
+      if (error) {
+        console.error(error);
+      }
+      console.log(response);
+    });
+      this.props._handleNavigate({type:'push', route: { key: 'signIn'}});
   }
 
   sendMessage(){
-    // var thisInstance = this
-    // this.props.route.channel.sendUserMessage(this.state.myMessage, '',  function(message, error){
-    //   if (error) {
-    //       console.error(error);
-    //       return;
-    //   }
-    //   thisInstance.setState({myMessage:''})
-    //   //console.log(thisInstance.state.channel)
-
-    //   var _messages =[]
-    //    _messages.push(message)
-    //    _messages = _messages.concat(thisInstance.state.messageArray);
-    //    thisInstance.setState({
-    //     messageArray:_messages,
-    //     dataSource: thisInstance.state.dataSource.cloneWithRows(_messages)
-    //    });
-    //    console.log(thisInstance.state.messageArray)
-    //    //console.log(thisInstance.state.dataSource)
-    // });
+    var thisInstance = this
+    this.props.channel.sendUserMessage(this.state.myMessage, '',  function(message, error){
+      if (error) {
+          console.error(error);
+          return;
+      }
+      thisInstance.setState({myMessage:''})
+      var _messages =[]
+       _messages.push(message)
+       _messages = _messages.concat(thisInstance.state.messageArray);
+       thisInstance.setState({
+        messageArray:_messages,
+        dataSource: thisInstance.state.dataSource.cloneWithRows(_messages)
+       });
+       console.log(thisInstance.state.messageArray)
+    });
   }
 
   getOldMessages(){
-    // var thisInstance = this;
-    // var messageListQuery = this.props.route.channel.createPreviousMessageListQuery();
-    // messageListQuery.load(20, true, function(messageList, error){
-    //   if (error) {
-    //     console.error(error);
-    //     return;
-    //   }
-    //   var messages = messageList.concat(thisInstance.state.messageArray);
-    //   thisInstance.setState({
-    //     messageArray: messages,
-    //     dataSource:thisInstance.state.dataSource.cloneWithRows(messages)
-    //   })
-    // });
+    var thisInstance = this;
+    var _channel = this.props.channel;
+    console.log('what is the difference',_channel);
+    return
+    var messageListQuery = _channel.createPreviousMessageListQuery();
+    messageListQuery.load(20, true, function(messageList, error){
+      if (error) {
+        console.error('getOld Messages error line 87',error);
+        return;
+      }
+      var messages = messageList.concat(thisInstance.state.messageArray);
+      thisInstance.setState({
+        messageArray: messages,
+        dataSource:thisInstance.state.dataSource.cloneWithRows(messages)
+      })
+    });
 
   }
 
@@ -100,10 +108,17 @@ class GroupChat extends Component{
         <View style={styles.topContainer}>
           <TouchableHighlight
             underlayColor={'#DEC025'}
-            onPress={this.goBack.bind(this)}
+            onPress={ () => this.props._handleNavigate({type:'pop'}) }
             style={{marginLeft: 15}}
             >
             <Text style={styles.backBorder}> Back </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            underlayColor={'#DEC025'}
+            onPress={this.onDisconnect.bind(this)}
+            style={{marginLeft: 15}}
+            >
+            <Text style={styles.backBorder}> Leave chat </Text>
           </TouchableHighlight>
         </View>
 
