@@ -11,7 +11,9 @@ import {
 } from 'react-native';
 
 import {sendBirdGetUsers, sendBirdCreateGroupChat} from '../utils/sendBird';
+
 var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2 });
+
 class InviteFriends extends Component{
   constructor(props){
     super(props) 
@@ -36,9 +38,11 @@ class InviteFriends extends Component{
   createChatRoom() {
     var thisComponent = this;
     sendBirdCreateGroupChat(function(channel){
-      thisComponent.props.updateChannelList(channel)
-    });
-    
+      if(channel){
+        thisComponent.props.updateChannelList(channel);
+      }   
+      thisComponent.props._handleNavigate({type:'push', route: { key: 'groupchat'}})
+    })
   }
 
 
@@ -78,7 +82,7 @@ class InviteFriends extends Component{
 
           <TouchableHighlight
           style={styles.button}
-          //onPress={  } // should send you to the main window.
+          onPress={ () => this.props._handleNavigate({type:'pop'}) }
           >
             <Text style={styles.label}>Cancel</Text>
           </TouchableHighlight>
