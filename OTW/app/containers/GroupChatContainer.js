@@ -3,23 +3,23 @@ import {connect} from 'react-redux';
 
 import GroupChat from '../components/GroupChat';
 import {
-	updateChannelList
+	updateChannelList,
 	updateCurrentMessage,
 	updateMessageList,
   } from '../actions/sendBirdActions'	
 const mapStateToProps = function(state){
   return {
-    channel: state.sendBirdState.get('channel')
-    currentMessage: state.sendBirdState.get('myMessage')
-    messageList: state.sendBirdState.get('messageList')
+    channel: state.sendBirdState.get('channel'),
+    currentMessage: state.sendBirdState.get('myMessage'),
+    messageList: state.sendBirdState.get('messageList'),
   };
 }
 
 const mapDispatchToProps = function(dispatch) {
   return {
    	updateChannelList: (channel) => dispatch(updateChannelList(channel)),
-   	updateCurrentMessage: (message) => dispatch(updateCurrentMessage(message))
-   	updateMessageList: (messages) => dispatch(updateMessageList(messages))
+   	updateCurrentMessage: (message) => dispatch(updateCurrentMessage(message)),
+   	updateMessageList: (messages) => dispatch(updateMessageList(messages)),
   }
 }
 
