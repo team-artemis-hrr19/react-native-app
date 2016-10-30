@@ -10,89 +10,86 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-var SendBird = require('sendbird');
+//var SendBird = require('sendbird');
 var windowSize = Dimensions.get('window')
 
 class GroupChat extends Component{
   constructor(props){
   	super(props)
-    var sb = SendBird.getInstance();
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    // var sb = SendBird.getInstance();
+    // var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
   	this.state ={
-      channel: props.route.channel,
       dataSource: ds.cloneWithRows([]),
-      myMessage: '',
-      messageArray: [],
     }
   }
 
   componentWillUnMount(){
-    sb.removeChannelHandler('MessageHandler');
+    // sb.removeChannelHandler('MessageHandler');
   }
 
   componentWillMount() {
-    this.getOldMessages();
+    // this.getOldMessages();
 
-    var thisInstance = this;
+    // var thisInstance = this;
 
-    var ChannelHandler = new sb.ChannelHandler();
+    // var ChannelHandler = new sb.ChannelHandler();
 
-    ChannelHandler.onMessageReceived = function(channel, message){
-      var _messages = [];
-      _messages.push(message);
-      console.log('the ChannelHandler onMessageReceived was called')
-      _messages = _messages.concat(thisInstance.state.messageArray);
-      thisInstance.setState({
-        messageArray: _messages,
-        dataSource: thisInstance.state.dataSource.cloneWithRows(_messages)
-      });
-      console.log(channel, message)
-     };
+    // ChannelHandler.onMessageReceived = function(channel, message){
+    //   var _messages = [];
+    //   _messages.push(message);
+    //   console.log('the ChannelHandler onMessageReceived was called')
+    //   _messages = _messages.concat(thisInstance.state.messageArray);
+    //   thisInstance.setState({
+    //     messageArray: _messages,
+    //     dataSource: thisInstance.state.dataSource.cloneWithRows(_messages)
+    //   });
+    //   console.log(channel, message)
+    //  };
 
-    sb.addChannelHandler('MessageHandler', ChannelHandler);
+    // sb.addChannelHandler('MessageHandler', ChannelHandler);
   }
 
   goBack() {
-    this.props.navigator.pop()
+    //this.props.navigator.pop()
   }
 
   sendMessage(){
-    var thisInstance = this
-    this.props.route.channel.sendUserMessage(this.state.myMessage, '',  function(message, error){
-      if (error) {
-          console.error(error);
-          return;
-      }
-      thisInstance.setState({myMessage:''})
-      //console.log(thisInstance.state.channel)
+    // var thisInstance = this
+    // this.props.route.channel.sendUserMessage(this.state.myMessage, '',  function(message, error){
+    //   if (error) {
+    //       console.error(error);
+    //       return;
+    //   }
+    //   thisInstance.setState({myMessage:''})
+    //   //console.log(thisInstance.state.channel)
 
-      var _messages =[]
-       _messages.push(message)
-       _messages = _messages.concat(thisInstance.state.messageArray);
-       thisInstance.setState({
-        messageArray:_messages,
-        dataSource: thisInstance.state.dataSource.cloneWithRows(_messages)
-       });
-       console.log(thisInstance.state.messageArray)
-       //console.log(thisInstance.state.dataSource)
-    });
+    //   var _messages =[]
+    //    _messages.push(message)
+    //    _messages = _messages.concat(thisInstance.state.messageArray);
+    //    thisInstance.setState({
+    //     messageArray:_messages,
+    //     dataSource: thisInstance.state.dataSource.cloneWithRows(_messages)
+    //    });
+    //    console.log(thisInstance.state.messageArray)
+    //    //console.log(thisInstance.state.dataSource)
+    // });
   }
 
   getOldMessages(){
-    var thisInstance = this;
-    var messageListQuery = this.props.route.channel.createPreviousMessageListQuery();
-    messageListQuery.load(20, true, function(messageList, error){
-      if (error) {
-        console.error(error);
-        return;
-      }
-      var messages = messageList.concat(thisInstance.state.messageArray);
-      thisInstance.setState({
-        messageArray: messages,
-        dataSource:thisInstance.state.dataSource.cloneWithRows(messages)
-      })
-    });
+    // var thisInstance = this;
+    // var messageListQuery = this.props.route.channel.createPreviousMessageListQuery();
+    // messageListQuery.load(20, true, function(messageList, error){
+    //   if (error) {
+    //     console.error(error);
+    //     return;
+    //   }
+    //   var messages = messageList.concat(thisInstance.state.messageArray);
+    //   thisInstance.setState({
+    //     messageArray: messages,
+    //     dataSource:thisInstance.state.dataSource.cloneWithRows(messages)
+    //   })
+    // });
 
   }
 
