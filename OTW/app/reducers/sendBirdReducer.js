@@ -34,7 +34,7 @@ export default function sendBirdState (state=INITIAL_STATE, action) {
       if (state.get('channel') === action.channel) {
         return state.set('channel', null)
       } else {
-        return state.set('channel', Map(action.channel));
+        return state.set('channel', action.channel);
       }
     }
     case SEND_MESSAGE: {
