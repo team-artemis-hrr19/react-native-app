@@ -3,7 +3,7 @@ import React from 'react';
 // all scenes here
 import SignInContainer from '../containers/SignInContainer';
 import SignUp from '../components/SignUp';
-import GroupChat from '../components/GroupChat';
+import GroupChatContainer from '../containers/GroupChatContainer';
 import InviteFriendsContainer from '../containers/InviteFriendsContainer'
 import HelpContainer from '../containers/HelpContainer';
 import Helper from '../components/Helper';
@@ -24,7 +24,7 @@ export default function getComponent(routeKey, _handleNavigate, _handleBackActio
     case 'signUp':
       return <SignUp _handleNavigate = {_handleNavigate} />
     case 'groupchat':
-      return <GroupChat _handleNavigate={handleNavigate} />
+      return <GroupChatContainer _handleNavigate={handleNavigate} />
     case 'inviteFriends':
       return <InviteFriendsContainer _handleNavigate={handleNavigate} />
     case 'help':

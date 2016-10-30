@@ -47,7 +47,6 @@ class InviteFriends extends Component{
 
   }
 
-<<<<<<< HEAD
   // onPressInvite(rowData) {
   //   var curretInviteList = this.state.inviteList;
 
