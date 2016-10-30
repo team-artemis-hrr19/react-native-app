@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   }]
 };
 
-export default function navigationState (state = INITIAL_STATE, action) {
+export default function navigationState (state=INITIAL_STATE, action) {
 
   switch (action.type) {
     case PUSH_ROUTE:

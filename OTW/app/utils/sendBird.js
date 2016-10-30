@@ -53,6 +53,7 @@ export function sendBirdCreateGroupChat(cb) {
         cb();
       });
     }
+
  }
 
 

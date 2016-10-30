@@ -1,5 +1,5 @@
-
 import React, { Component } from 'react';
+import Sendbird from 'sendbird';
 
 import {
   StyleSheet,
@@ -12,13 +12,12 @@ import {
 
 import {sendBirdGetUsers, sendBirdCreateGroupChat} from '../utils/sendBird';
 
-var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2 });
-
+var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2 })
 class InviteFriends extends Component{
   constructor(props){
-    super(props) 
+    super(props)
     this.state = {
-    dataSource: ds.cloneWithRows([]),
+      dataSource: ds.cloneWithRows([]),
     };
   }
 
@@ -42,18 +41,14 @@ class InviteFriends extends Component{
         thisComponent.props.updateChannelList(channel);
       }   
       thisComponent.props._handleNavigate({type:'push', route: { key: 'groupchat'}})
-    })
+    });
   }
-
 
   render() {
     return (
       <View style={styles.container}>
-
-
-        
          <ListView
-          sylte={styles.ListView}
+          style={styles.ListView}
           enableEmptySections={true}
           dataSource={this.state.dataSource}
           renderRow={(rowData) => {
@@ -87,7 +82,7 @@ class InviteFriends extends Component{
             <Text style={styles.label}>Cancel</Text>
           </TouchableHighlight>
         </View>
-        
+
       </View>
     );
   }
