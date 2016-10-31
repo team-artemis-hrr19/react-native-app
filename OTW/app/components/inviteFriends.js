@@ -39,8 +39,8 @@ class InviteFriends extends Component{
     sendBirdCreateGroupChat(function(channel){
       if(channel){
         thisComponent.props.updateChannelList(channel);
-      }   
-      thisComponent.props._handleNavigate({type:'push', route: { key: 'groupchat'}})
+      }
+      thisComponent.props._handleForwardAction('groupChat')
     });
   }
 
@@ -82,7 +82,6 @@ class InviteFriends extends Component{
             <Text style={styles.label}>Cancel</Text>
           </TouchableHighlight>
         </View>
-
       </View>
     );
   }
@@ -91,7 +90,7 @@ class InviteFriends extends Component{
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    //justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
   },

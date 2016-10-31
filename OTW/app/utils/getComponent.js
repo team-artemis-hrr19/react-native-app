@@ -23,15 +23,15 @@ export default function getComponent(routeKey, _handleNavigate, _handleBackActio
         />
     case 'signUp':
       return <SignUp _handleNavigate = {_handleNavigate} />
-    case 'groupchat':
-      return <GroupChatContainer 
-      _handleNavigate={_handleNavigate} 
+    case 'groupChat':
+      return <GroupChatContainer
+      _handleNavigate={_handleNavigate}
       _handleBackAction={_handleBackAction}
       _handleForwardAction={_handleForwardAction}
       />
     case 'inviteFriends':
-      return <InviteFriendsContainer 
-      _handleNavigate={_handleNavigate} 
+      return <InviteFriendsContainer
+      _handleNavigate={_handleNavigate}
       _handleForwardAction={_handleForwardAction}
       _handleBackAction={_handleBackAction}
       />
