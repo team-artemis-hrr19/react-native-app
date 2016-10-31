@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+const firebase = require('firebase');
+
 import {
   AppRegistry,
   StyleSheet,
@@ -9,11 +12,15 @@ import {
   MapView
 } from 'react-native';
 
+
 import UserBarContainer from '../containers/UserBarContainer';
 import Button from './Button';
 import BottomBarContainer from '../containers/BottomBarContainer';
 
 class Help extends Component {
+  getHelp(){
+    _addHelpie();
+  }
 
   onRegionChangeComplete(region) {
     this.props.updateLocation({
@@ -23,7 +30,7 @@ class Help extends Component {
   }
 
   getHelp(){
-    return
+    return;
   }
 
   render() {
