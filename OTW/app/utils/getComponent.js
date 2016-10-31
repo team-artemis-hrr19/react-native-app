@@ -23,7 +23,7 @@ export default function getComponent(routeKey, _handleNavigate, _handleBackActio
         />
     case 'signUp':
       return <SignUp _handleNavigate = {_handleNavigate} />
-    case 'groupchat':
+    case 'groupChat':
       return <GroupChatContainer
       _handleNavigate={_handleNavigate}
       _handleBackAction={_handleBackAction}
