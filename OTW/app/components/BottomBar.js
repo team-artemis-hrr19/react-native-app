@@ -1,4 +1,6 @@
 import React from 'react';
+import _addHelpie from '../utils/firebaseApp';
+
 import {
   View,
   Text,
@@ -13,7 +15,7 @@ const BottomBar = ({location}) => (
     <Text>Long: {location && location.get('long')}</Text>
     <Button
       label='Request Help'
-      onPress={()=> console.log}
+      onPress={()=> _addHelpie()}
     />
   </View>
 );
