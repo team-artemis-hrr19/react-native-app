@@ -53,13 +53,14 @@ class GroupChat extends Component{
 
 
   onDisconnect() {
+    var thisInstance= this;
     this.props.channel.leave(function(response, error) {
       if (error) {
         console.error(error);
       }
       console.log(response);
+      thisInstance.props._handleNavigate({type:'pop'});
     });
-      this.props._handleNavigate({type:'push', route: { key: 'signIn'}});
   }
 
   sendMessage(){

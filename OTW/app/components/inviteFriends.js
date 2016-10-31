@@ -48,7 +48,7 @@ class InviteFriends extends Component{
     return (
       <View style={styles.container}>
          <ListView
-          style={styles.ListView}
+          //style={styles.ListView}
           enableEmptySections={true}
           dataSource={this.state.dataSource}
           renderRow={(rowData) => {
@@ -97,8 +97,8 @@ var styles = StyleSheet.create({
   },
 
   button: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    //justifyContent: 'center',
+    //alignItems: 'center',
     borderWidth: 1,
     borderRadius: 5,
     borderColor: '#000',
@@ -114,9 +114,8 @@ var styles = StyleSheet.create({
 
   ListView: {
     flex: 1,
-    justifyContent:'space-between',
-    alignSelf: 'center',
-    textAlign: 'center',
+    //alignSelf: 'center',
+    //textAlign: 'center',
     marginTop: 100,
     marginBottom:-75
   }
