@@ -10,19 +10,14 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-const sb = Sendbird.getInstance();
-
 import {sendBirdGetUsers, sendBirdCreateGroupChat} from '../utils/sendBird';
 
+var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2 })
 class InviteFriends extends Component{
   constructor(props){
     super(props)
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      //channel: props.route.channel,
       dataSource: ds.cloneWithRows([]),
-      sendBirdUserQuery: sb.createUserListQuery(),
-      inviteList: []
     };
   }
 
@@ -42,45 +37,18 @@ class InviteFriends extends Component{
   createChatRoom() {
     var thisComponent = this;
     sendBirdCreateGroupChat(function(channel){
-      thisComponent.props.updateChannelList(channel)
+      if(channel){
+        thisComponent.props.updateChannelList(channel);
+      }   
+      thisComponent.props._handleNavigate({type:'push', route: { key: 'groupchat'}})
     });
-
-  }
-
-  // onPressInvite(rowData) {
-  //   var curretInviteList = this.state.inviteList;
-
-  //   if (curretInviteList.includes(rowData)){
-  //     curretInviteList.forEach((user, i) => {
-  //       if(user.userId === rowData.userId){
-  //         curretInviteList.splice(i, 1)
-  //       }
-  //     });
-  //   } else {
-  //     curretInviteList.push(rowData)
-  //   }
-  //   this.setState({inviteList: curretInviteList})
-  //   console.log(JSON.stringify(this.state.inviteList));
-
-  // }
-
-    createChatRoom() {
-      sb.GroupChannel.createChannel(this.props.inviteList, false, function(channel, error) {
-        if (error) {
-          return console.error(error);
-        }
-        // TODO: pass this in through redux
-        this.props.updateChannel.call(this, channel); //TODO: implement channel
-        //this._handleNavigation({'push', route: { key: 'groupChat'}});
-      });
-
   }
 
   render() {
     return (
       <View style={styles.container}>
          <ListView
-          style={styles.ListView}
+          //style={styles.ListView}
           enableEmptySections={true}
           dataSource={this.state.dataSource}
           renderRow={(rowData) => {
@@ -109,7 +77,7 @@ class InviteFriends extends Component{
 
           <TouchableHighlight
           style={styles.button}
-          //onPress={  } // should send you to the main window.
+          onPress={ () => this.props._handleNavigate({type:'pop'}) }
           >
             <Text style={styles.label}>Cancel</Text>
           </TouchableHighlight>
@@ -128,8 +96,8 @@ var styles = StyleSheet.create({
   },
 
   button: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    //justifyContent: 'center',
+    //alignItems: 'center',
     borderWidth: 1,
     borderRadius: 5,
     borderColor: '#000',
@@ -145,9 +113,8 @@ var styles = StyleSheet.create({
 
   ListView: {
     flex: 1,
-    justifyContent:'space-between',
-    alignSelf: 'center',
-    textAlign: 'center',
+    //alignSelf: 'center',
+    //textAlign: 'center',
     marginTop: 100,
     marginBottom:-75
   }
