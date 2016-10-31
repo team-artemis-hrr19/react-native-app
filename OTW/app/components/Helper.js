@@ -17,13 +17,26 @@ import {
 
 import UserBarContainer from '../containers/UserBarContainer';
 import Button from './Button';
-import BottomBarContainer from '../containers/BottomBarContainer';
+import MapBottomBar from '../components/MapBottomBar';
 
 class Helper extends Component {
-  
-  
+  constructor(props){
+    super(props)
+    this.helpee = {
+      title: '',
+      message: ''
+    };
+  }
+
+  updateHelpee(title = '', message = ''){
+    this.helpee = {
+      title,
+      message
+    }
+    this.forceUpdate(); //Note: super hacky but works fix later...
+  }
+
   render() {
-    console.log(this.props.helpees.toArray(), '*********************')
     return (
       <View style={styles.container}>
         <UserBarContainer
@@ -35,10 +48,15 @@ class Helper extends Component {
           showsUserLocation={true}
           followUserLocation={true}
           minDelta={.02}
-          annotations={this.props.helpees.toArray()}
+          annotations={this.props.helpees.toArray().map((item) => {
+            const superUpdate = this.updateHelpee.bind(this);
+            return Object.assign(item, {onFocus:function() {
+              superUpdate(this.title, this.message)
+            }})
+          })}
         />
 
-        <BottomBarContainer/>
+        <MapBottomBar helpee={this.helpee} />
       </View>
     );
   }
