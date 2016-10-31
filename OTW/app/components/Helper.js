@@ -34,6 +34,7 @@ class Helper extends Component {
           style={{height: 450, margin: 5}}
           showsUserLocation={true}
           followUserLocation={true}
+          minDelta={.02}
           annotations={this.props.helpees.toArray()}
         />
 
