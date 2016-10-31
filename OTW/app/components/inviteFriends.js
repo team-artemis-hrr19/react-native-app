@@ -39,8 +39,8 @@ class InviteFriends extends Component{
     sendBirdCreateGroupChat(function(channel){
       if(channel){
         thisComponent.props.updateChannelList(channel);
-      }   
-      thisComponent.props._handleNavigate({type:'push', route: { key: 'groupchat'}})
+      }
+      thisComponent.props._handleForwardAction('groupChat')
     });
   }
 
