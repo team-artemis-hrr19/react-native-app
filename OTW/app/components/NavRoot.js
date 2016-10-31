@@ -13,6 +13,7 @@ class NavRoot extends Component {
     super(props);
     this._renderScene = this._renderScene.bind(this);
     this._handleBackAction = this._handleBackAction.bind(this);
+    // this._handleForwardAction = this._handleForwardAction.bind(this)
   }
 
   _renderScene(props) {
@@ -40,6 +41,7 @@ class NavRoot extends Component {
   }
 
   _handleNavigate(action) {
+    console.log('what the f is this',this);
     switch(action && action.type) {
       case 'push':
         this._handleForwardAction(action.route.key);

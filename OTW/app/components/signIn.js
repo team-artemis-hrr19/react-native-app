@@ -23,7 +23,7 @@ class SignIn extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log('check the props for handleNavigate',this.props);
 
     if (this.props.user.get('name') === 'Guest') {
       return (

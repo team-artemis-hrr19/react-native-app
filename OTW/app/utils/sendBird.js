@@ -5,11 +5,9 @@ const sb = new SendBird({appId: appId});
 
 
 export function sendBirdConnect(userEmail, username, cb) {
-  console.log('line 8 of sendbird connect not connected yet', userEmail, username)
   sb.connect(userEmail, function(user, err){
     if(err){
       return console.error("error in sendBird login", err);
-      return cb(user);
     }
     console.log("connected but not updated")
     sb.updateCurrentUserInfo(username, '', function(response, error) {
@@ -36,27 +34,27 @@ export function sendBirdCreateGroupChat(cb) {
   var _friendsList = []
   var friendsListState = store.getState().sendBirdState.get('friendsList')
   friendsListState.forEach((item) => {_friendsList.push(item)})
-  sb.GroupChannel.createChannel(_friendsList, false, function(channel, error) {
-    if (error) {
-      console.log(channel)
-      return console.error('we got a problem',error);
-
+  var channel = store.getState().sendBirdState.get('channel')
+  if (! channel) {
+    sb.GroupChannel.createChannel(_friendsList, false, function(channel, error) {
+      if (error) {
+        return console.error('we got a problem',error);
+      } 
+      cb(channel);      
+    });
+   } else {
+      var _inviteIds = _friendsList.map(function(user) {return user.userId});
+      console.log('If the channel already exits',_inviteIds);
+      channel.inviteWithUserIds(_inviteIds, function(response, error) {
+        if (error) {
+          console.log(error);
+          return;
+        }
+        cb();
+      });
     }
-    cb(channel);
-    //this.updateChannel.call(this, channel); //TODO: implement channel
-    //this._handleNavigation({'push', route: { key: 'groupChat'}});
-  });
+
  }
 
- export function sendBirdRemoveChannelHandler(){
-   sb.removeChannelHandler('MessageHandler')
- }
 
- export function sendBirdCreateChannelHandler(cb){
-   var ChannelHandler = new sb.ChannelHandler();
-   ChannelHandler.onMessageReceived = function(channel, message){
-    store.getState().sendBirdState.get('messageList')
-    //_messages = _messages.concat.
-   }
- }
 

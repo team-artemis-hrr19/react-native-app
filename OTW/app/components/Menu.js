@@ -21,7 +21,7 @@ const Menu = ({_handleForwardAction, closeControlPanel, user}) => {
         label="Group Chat"
       />
       <Button
-        onPress={() => _handleNavigate('inviteFriends')}
+        onPress={() => _handleForwardAction('inviteFriends')}
         label="Invite Friends"
       />
       <Button
