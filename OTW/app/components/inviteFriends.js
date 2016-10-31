@@ -114,7 +114,6 @@ class InviteFriends extends Component{
             <Text style={styles.label}>Cancel</Text>
           </TouchableHighlight>
         </View>
-
       </View>
     );
   }
@@ -123,7 +122,7 @@ class InviteFriends extends Component{
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    //justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
   },

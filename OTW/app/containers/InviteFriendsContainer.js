@@ -21,7 +21,6 @@ const mapDispatchToProps = function(dispatch) {
     updateSendBirdUsers: (users) => dispatch(updateSendBirdUsers(users)),
    	updateFriendsList: (user) => dispatch(updateFriendsList(user)),
     updateChannelList: (channel) => dispatch(updateChannelList(channel))
-
   }
 }
 
