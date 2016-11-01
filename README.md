@@ -11,16 +11,24 @@
 
 ## MVP features ##
 > location
+
 > authentication using Google+
+
 > client side state in Redux store
+
 > persistent data store in Firebase
+
 > Firebase pushes update events to client, trigger Redux store to update
+
 > chatroom
+
 > invite friends to Chatroom
 
 ## Useful Features to Implement
 > push notification
+
 > helpers can reply to help request, opening custom chatroom
+
 > add and invite friends network
 
 # DOCUMENTATION
@@ -127,3 +135,8 @@ mapDispatchToProps takes the store's dispatch method as an argument and returns 
 Lastly we use the react-redux connect function to ties both mapStateToProps and mapDispatchToProps to the SignIn component and save the value returned in a variable called SignInContainer container and export that value.
 
 The important thing now is when we want to render the SignIn component, instead we have to call the SignInContainer, which is just the SignIn component with the user state injected in.
+
+## USEFUL REDUX RESOURCES
+-Become a Redux ninja with the 2 hour course taught by Dan Abramov, creator of Redux: https://egghead.io/courses/getting-started-with-redux
+
+- This simple GitHub project shows how to structure a React Native/ Redux project by seperating actions, reducers, components and containers. https://github.com/bruz/react-native-redux-groceries
