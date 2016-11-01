@@ -1,4 +1,4 @@
-![]('http://www.giphy.com/gifs/3oz8xxwRSYoVD3Mh2M.gif')
+![](https://media.giphy.com/media/3oz8xxwRSYoVD3Mh2M/giphy.gif)
 
 # On The Way #
 > LOCATION BASED MESSAGING APP TO ASK FOR HELP
