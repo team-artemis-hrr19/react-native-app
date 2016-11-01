@@ -44,7 +44,12 @@ export default function getComponent(routeKey, _handleNavigate, _handleBackActio
         closeControlPanel={closeControlPanel}
       />
     case 'helper':
-      return <HelperContainer _handleNavigate={_handleNavigate}/>
+      return <HelperContainer 
+        _handleNavigate={_handleNavigate}
+        _handleForwardAction={_handleForwardAction}
+        _handleBackAction={_handleBackAction}
+        openControlPanel={openControlPanel}
+        closeControlPanel={closeControlPanel}/>
     default:
       return <LandingPage _handleNavigate = {_handleNavigate} />;
   }
