@@ -3,10 +3,10 @@ import store from '../store';
 import updateHelpees from '../actions/updateHelpees';
 
 var firebaseConfig = {
-  apiKey: "AIzaSyDZj0wDBhtrrKMVdrhfI7nHKRpUr-2FHBc",
-  authDomain: "ontheway-aeb6d.firebaseio.com",
-  databaseURL: "https://ontheway-aeb6d.firebaseio.com/",
-  storageBucket: "ontheway-aeb6d.appspot.com",
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  storageBucket: "",
 };
 var firebaseApp = firebase.initializeApp(firebaseConfig);
 
