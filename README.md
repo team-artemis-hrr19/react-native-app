@@ -102,6 +102,8 @@ We mostly use Immutable Lists (which are arrays that you can't change) and Maps 
 
 To get the value of a property of a map is is Map.get('key') as opposed to Object['key'] for a regular JS object.
 
+# PRINCIPLES FOR USING REDUX IN THIS APP
+
 ## NEVER MUTATE STATE DIRECTLY
 
 In Redux, state is never mutated directly. When state needs to be updated, you can dispatch an action using `store.dispach`.  The store will then call the appropriate reducer method to update state.
