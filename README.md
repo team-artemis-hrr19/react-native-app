@@ -33,6 +33,51 @@
 
 # DOCUMENTATION
 
+# PROJECT SETUP
+
+## FIREBASE
+
+Setting up firebase:
+	Sign up for a free firebase account.
+	Create a new project
+	You can name it whatever you want.
+	It should automatically navigate to your new project.
+	In the nav bar on the left hand side you should see a settings button next to your project name click that.
+	Click Add Firebase to your web app.
+	And add apiKey, authDomain, databaseURL, and storageBucket to firebaseApp.js in utils
+  
+## REACT NATIVE
+
+Setup react-native environment:
+	Open your terminal.
+	Use homebrew to install the following:
+		brew install node (if you don’t have node)
+		brew install watchman
+	Get the react native CLI with,
+		npm install -g react-native-cli
+	If you get a permissions error use 
+		sudo npm install -g react-native-cli
+	Next download Xcode.
+	Then from the home directory of the project run:
+		react-native run-ios
+    
+## SENDBIRD
+
+Getting sendbird up and running
+  sign up for an account at sendbird.com
+  place your appId in the sendbird.js file
+  the offical sendbird doc for react-native is @ https://docs.sendbird.com/javascript
+  a good tutorial on how to build a basic messaging app with react-native @ https://blog.sendbird.com/tutorial-build-a-messaging-app-using-react-native/, caution: the tutorial uses version 2.0 and our
+  implementaion  uses version 3.0, the methods are completely different but how they approch there build is good.
+  
+  notes:
+  
+  The invite friends is almost completely  integrated with the redux store with the exception of the datasource, immutable js and ListView's datasource dont like each other for some reason. 
+  https://medium.com/front-end-hacking/react-native-immutable-listview-example-78662fa64a15#.uun5vay0c: A potential solution for the ListView/ immutable js problem. It just needs to use the redux store rather then
+  the component's state.
+  groupchat has access to the redux store but maintains component state due to the same reasons as above. 
+  The sendbird methods are async so the 'this' binding is weird. console logging 'this' was very helpful. 
+
 ## REDUX
 This app manages all its client side state using Redux.  This means that none of the React components hold their own state, and instead are just pure functions which take props and return as JSX view.
 
