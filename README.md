@@ -1,7 +1,7 @@
 # On The Way #
 > LOCATION BASED MOBILE MESSAGING APP TO ASK FOR HELP
 
-![](https://media.giphy.com/media/3oz8xxwRSYoVD3Mh2M/giphy.gif)
+![](https://giphy.com/gifs/3o7TKEgxA6q5yzgAfu/giphy.gif)
 
 ## Technologies ##
 > React-Native
